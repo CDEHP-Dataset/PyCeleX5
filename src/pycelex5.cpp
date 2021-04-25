@@ -1,4 +1,15 @@
 #include "pycelex5.h"
+#include <iostream>
+
+PyCeleX5::PyCeleX5()
+{
+    std::cout << "PyCeleX5: PyCeleX5()" << std::endl;
+}
+
+PyCeleX5::~PyCeleX5()
+{
+    std::cout << "PyCeleX5: ~PyCeleX5()" << std::endl;
+}
 
 bool PyCeleX5::openSensor(CeleX5::DeviceType type)
 {
