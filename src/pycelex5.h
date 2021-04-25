@@ -11,4 +11,4 @@ public:
 
 private:
     CeleX5 *m_pCeleX5;
-}
+};

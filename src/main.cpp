@@ -10,7 +10,7 @@ PYBIND11_MODULE(PyCeleX5, m)
 
     py::class_<PyCeleX5>(m, "PyCeleX5")
         .def(py::init())
-        .def("openSensor", &openSensor, "bool openSensor(DeviceType type)", py::arg("type") = CeleX5::DeviceType)
+        .def("openSensor", &openSensor, "bool openSensor(DeviceType type)", py::arg("type") = CeleX5::DeviceType::CeleX5_MIPI)
         .def("isSensorReady", &isSensorReady, "bool isSensorReady()");
 
     py::enum_<CeleX5::DeviceType>(CeleX5, "DeviceType")
