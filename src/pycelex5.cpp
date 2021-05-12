@@ -109,6 +109,54 @@ py::array_t<uint8_t> PyCeleX5::getOpticalFlowPicBuffer(CeleX5::OpticalFlowPicTyp
     return result;
 }
 
+uint32_t PyCeleX5::getFullPicFrameTime()
+{
+    uint32_t result = this->m_pCeleX5->getFullPicFrameTime();
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.getFullPicFrameTime(): " << result << endl;
+    }
+    return result;
+}
+
+void PyCeleX5::setEventFrameTime(uint32_t microsecond)
+{
+    this->m_pCeleX5->setEventFrameTime(microsecond);
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.setEventFrameTime(): " << microsecond << endl;
+    }
+}
+
+uint32_t PyCeleX5::getEventFrameTime()
+{
+    uint32_t result = this->m_pCeleX5->getEventFrameTime();
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.getEventFrameTime(): " << result << endl;
+    }
+    return result;
+}
+
+void PyCeleX5::setOpticalFlowFrameTime(uint32_t millisecond)
+{
+    this->m_pCeleX5->setOpticalFlowFrameTime(millisecond);
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.setOpticalFlowFrameTime(): " << millisecond << endl;
+    }
+}
+
+uint32_t PyCeleX5::getOpticalFlowFrameTime()
+{
+    uint32_t result = this->m_pCeleX5->getOpticalFlowFrameTime();
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.getOpticalFlowFrameTime(): " << result << endl;
+    }
+    return result;
+}
+
 std::string PyCeleX5::printDeviceType(CeleX5::DeviceType type)
 {
     std::string result;

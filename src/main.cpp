@@ -59,5 +59,10 @@ PYBIND11_MODULE(PyCeleX5, m)
         .def("getSensorFixedMode", &PyCeleX5::getSensorFixedMode, "CeleX5Mode getSensorFixedMode()")
         .def("getFullPicBuffer", &PyCeleX5::getFullPicBuffer, "uint8_t[] getFullPicBuffer()")
         .def("getEventPicBuffer", &PyCeleX5::getEventPicBuffer, "uint8_t[] getFullPicBuffer(EventPicType type)", py::arg("type") = CeleX5::EventPicType::EventBinaryPic)
-        .def("getOpticalFlowPicBuffer", &PyCeleX5::getOpticalFlowPicBuffer, "uint8_t[] getOpticalFlowPicBuffer(OpticalFlowPicType type)", py::arg("type") = CeleX5::OpticalFlowPicType::OpticalFlowPic));
+        .def("getOpticalFlowPicBuffer", &PyCeleX5::getOpticalFlowPicBuffer, "uint8_t[] getOpticalFlowPicBuffer(OpticalFlowPicType type)", py::arg("type") = CeleX5::OpticalFlowPicType::OpticalFlowPic)
+        .def("getFullPicFrameTime", &PyCeleX5::getFullPicFrameTime, "uint32_t getFullPicFrameTime()")
+        .def("setEventFrameTime", &PyCeleX5::setEventFrameTime, "void setEventFrameTime(uint32_t microsecond)", py::arg("microsecond"))
+        .def("getEventFrameTime", &PyCeleX5::getEventFrameTime, "uint32_t getEventFrameTime()")
+        .def("setOpticalFlowFrameTime", &PyCeleX5::setOpticalFlowFrameTime, "void setOpticalFlowFrameTime(uint32_t millisecond)", py::arg("millisecond"))
+        .def("getOpticalFlowFrameTime", &PyCeleX5::getOpticalFlowFrameTime, "uint32_t getOpticalFlowFrameTime()");
 }

@@ -45,6 +45,19 @@ public:
     py::array_t<uint8_t> getOpticalFlowPicBuffer(CeleX5::OpticalFlowPicType type);
     // 2.3.14 getOpticalFlowPicMat
 
+    // 2.3.15 getFullPicFrameTime
+    uint32_t getFullPicFrameTime();
+
+    // 2.3.16 setEventFrameTime
+    void setEventFrameTime(uint32_t microsecond);
+    // 2.3.17 getEventFrameTime
+    uint32_t getEventFrameTime();
+
+    // 2.3.18 setOpticalFlowFrameTime
+    void setOpticalFlowFrameTime(uint32_t millisecond);
+    // 2.3.19 getOpticalFlowFrameTime
+    uint32_t getOpticalFlowFrameTime();
+
 private:
     CeleX5 *m_pCeleX5;
     bool m_bDebug;
