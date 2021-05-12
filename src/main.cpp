@@ -8,11 +8,6 @@ PYBIND11_MODULE(PyCeleX5, m)
 {
     m.doc() = "CelePixel CeleX5-MIPI C++ Wrapper for Python 3";
 
-    py::class_<PyCeleX5>(m, "PyCeleX5")
-        .def(py::init<bool>())
-        .def("openSensor", &PyCeleX5::openSensor, "bool openSensor(DeviceType type)", py::arg("type") = CeleX5::DeviceType::CeleX5_MIPI)
-        .def("isSensorReady", &PyCeleX5::isSensorReady, "bool isSensorReady()");
-
     py::class_<CeleX5> celex5(m, "CeleX5");
 
     py::enum_<CeleX5::DeviceType>(celex5, "DeviceType")
@@ -31,4 +26,9 @@ PYBIND11_MODULE(PyCeleX5, m)
         .value("Optical_Flow_FPN_Mode", CeleX5::CeleX5Mode::Optical_Flow_FPN_Mode)
         .value("Multi_Read_Optical_Flow_Mode", CeleX5::CeleX5Mode::Multi_Read_Optical_Flow_Mode)
         .export_values();
+
+    py::class_<PyCeleX5>(m, "PyCeleX5")
+        .def(py::init<bool>(), py::arg("debug") = true)
+        .def("openSensor", &PyCeleX5::openSensor, "bool openSensor(DeviceType type)", py::arg("type") = CeleX5::DeviceType::CeleX5_MIPI)
+        .def("isSensorReady", &PyCeleX5::isSensorReady, "bool isSensorReady()");
 }

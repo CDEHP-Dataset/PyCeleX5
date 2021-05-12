@@ -9,3 +9,5 @@ link_directories(lib)
 
 add_subdirectory(pybind11)
 pybind11_add_module(PyCeleX5 SHARED src/main.cpp src/pycelex5.cpp)
+
+target_link_libraries(PyCeleX5 PUBLIC libCeleX.so ${OpenCV_LIBS})
