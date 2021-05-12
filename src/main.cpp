@@ -30,5 +30,7 @@ PYBIND11_MODULE(PyCeleX5, m)
     py::class_<PyCeleX5>(m, "PyCeleX5")
         .def(py::init<bool>(), py::arg("debug") = true)
         .def("openSensor", &PyCeleX5::openSensor, "bool openSensor(DeviceType type)", py::arg("type") = CeleX5::DeviceType::CeleX5_MIPI)
-        .def("isSensorReady", &PyCeleX5::isSensorReady, "bool isSensorReady()");
+        .def("isSensorReady", &PyCeleX5::isSensorReady, "bool isSensorReady()")
+        .def("setFpnFile", &PyCeleX5::setFpnFile, "bool setFpnFile(string fpnFile)", py::arg("fpnFile"))
+        .def("generateFpn", &PyCeleX5::generateFpn, "void generateFpn(string fpnFile)", py::arg("fpnFile"));
 }
