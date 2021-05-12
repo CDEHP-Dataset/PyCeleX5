@@ -28,4 +28,7 @@ public:
 private:
     CeleX5 *m_pCeleX5;
     bool m_bDebug;
+
+    std::string printDeviceType(CeleX5::DeviceType type);
+    std::string printCeleX5Mode(CeleX5::CeleX5Mode mode);
 };
