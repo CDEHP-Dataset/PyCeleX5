@@ -3,6 +3,12 @@
 using std::cout;
 using std::endl;
 
+namespace py = pybind11;
+
+uint32_t PyCeleX5::sm_uiWidth = 1280;
+uint32_t PyCeleX5::sm_uiHeight = 800;
+uint32_t PyCeleX5::sm_uiResolution = PyCeleX5::sm_uiWidth * PyCeleX5::sm_uiHeight;
+
 PyCeleX5::PyCeleX5(bool debug)
 {
     this->m_pCeleX5 = new CeleX5();
@@ -71,8 +77,35 @@ CeleX5::CeleX5Mode PyCeleX5::getSensorFixedMode()
     CeleX5::CeleX5Mode result = this->m_pCeleX5->getSensorFixedMode();
     if (this->m_bDebug)
     {
-        cout << "PyCeleX5.getSensorFixedMode(): mode " << printCeleX5Mode(mode) << endl;
+        cout << "PyCeleX5.getSensorFixedMode(): mode " << printCeleX5Mode(result) << endl;
     }
+    return result;
+}
+
+py::array_t<uint8_t> PyCeleX5::getFullPicBuffer()
+{
+    unsigned char *pBuffer1 = new unsigned char[PyCeleX5::sm_uiResolution];
+    this->m_pCeleX5->getFullPicBuffer(pBuffer1);
+    py::array_t<uint8_t> result = py::array_t<uint8_t>({PyCeleX5::sm_uiHeight, PyCeleX5::sm_uiWidth}, pBuffer1);
+    delete pBuffer1;
+    return result;
+}
+
+py::array_t<uint8_t> PyCeleX5::getEventPicBuffer(CeleX5::EventPicType type)
+{
+    unsigned char *pBuffer1 = new unsigned char[PyCeleX5::sm_uiResolution];
+    this->m_pCeleX5->getEventPicBuffer(pBuffer1, type);
+    py::array_t<uint8_t> result = py::array_t<uint8_t>({PyCeleX5::sm_uiHeight, PyCeleX5::sm_uiWidth}, pBuffer1);
+    delete pBuffer1;
+    return result;
+}
+
+py::array_t<uint8_t> PyCeleX5::getOpticalFlowPicBuffer(CeleX5::OpticalFlowPicType type)
+{
+    unsigned char *pBuffer1 = new unsigned char[PyCeleX5::sm_uiResolution];
+    this->m_pCeleX5->getOpticalFlowPicBuffer(pBuffer1, type);
+    py::array_t<uint8_t> result = py::array_t<uint8_t>({PyCeleX5::sm_uiHeight, PyCeleX5::sm_uiWidth}, pBuffer1);
+    delete pBuffer1;
     return result;
 }
 
@@ -94,14 +127,14 @@ std::string PyCeleX5::printDeviceType(CeleX5::DeviceType type)
         result = "Wrong DeviceType";
         break;
     }
-    result += "(" + type + ")";
+    result += "(" + std::to_string(type) + ")";
     return result;
 }
 
 std::string PyCeleX5::printCeleX5Mode(CeleX5::CeleX5Mode mode)
 {
     std::string result;
-    switch (type)
+    switch (mode)
     {
     case CeleX5::CeleX5Mode::Unknown_Mode:
         result = "Unknown_Mode";
@@ -128,6 +161,68 @@ std::string PyCeleX5::printCeleX5Mode(CeleX5::CeleX5Mode mode)
         result = "Wrong CeleX5Mode";
         break;
     }
-    result += "(" + type + ")";
+    result += "(" + std::to_string(mode) + ")";
+    return result;
+}
+
+std::string PyCeleX5::printEventPicType(CeleX5::EventPicType type)
+{
+    std::string result;
+    switch (type)
+    {
+    case CeleX5::EventPicType::EventBinaryPic:
+        result = "EventBinaryPic";
+        break;
+    case CeleX5::EventPicType::EventAccumulatedPic:
+        result = "EventAccumulatedPic";
+        break;
+    case CeleX5::EventPicType::EventGrayPic:
+        result = "EventGrayPic";
+        break;
+    case CeleX5::EventPicType::EventCountPic:
+        result = "EventCountPic";
+        break;
+    case CeleX5::EventPicType::EventDenoisedBinaryPic:
+        result = "EventDenoisedBinaryPic";
+        break;
+    case CeleX5::EventPicType::EventSuperimposedPic:
+        result = "EventSuperimposedPic";
+        break;
+    case CeleX5::EventPicType::EventDenoisedCountPic:
+        result = "EventDenoisedCountPic";
+        break;
+    case CeleX5::EventPicType::EventCountDensityPic:
+        result = "EventCountDensityPic";
+        break;
+    case CeleX5::EventPicType::EventInPixelTimestampPic:
+        result = "EventInPixelTimestampPic";
+        break;
+    default:
+        result = "Wrong EventPicType";
+        break;
+    }
+    result += "(" + std::to_string(type) + ")";
+    return result;
+}
+
+std::string PyCeleX5::printOpticalFlowPicType(CeleX5::OpticalFlowPicType type)
+{
+    std::string result;
+    switch (type)
+    {
+    case CeleX5::OpticalFlowPicType::OpticalFlowPic:
+        result = "OpticalFlowPic";
+        break;
+    case CeleX5::OpticalFlowPicType::OpticalFlowSpeedPic:
+        result = "OpticalFlowSpeedPic";
+        break;
+    case CeleX5::OpticalFlowPicType::OpticalFlowDirectionPic:
+        result = "OpticalFlowDirectionPic";
+        break;
+    default:
+        result = "Wrong EventPicType";
+        break;
+    }
+    result += "(" + std::to_string(type) + ")";
     return result;
 }
