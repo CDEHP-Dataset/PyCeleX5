@@ -58,6 +58,16 @@ public:
     // 2.3.19 getOpticalFlowFrameTime
     uint32_t getOpticalFlowFrameTime();
 
+    // 2.3.20 setSensorLoopMode
+    void setSensorLoopMode(CeleX5::CeleX5Mode mode, int loopNum);
+    // 2.3.21 getSensorLoopMode
+    CeleX5::CeleX5Mode getSensorLoopMode(int loopNum);
+
+    // 2.3.22 setLoopModeEnabled
+    void setLoopModeEnabled(bool enable);
+    // 2.3.23 isLoopModeEnabled
+    bool isLoopModeEnabled();
+
 private:
     CeleX5 *m_pCeleX5;
     bool m_bDebug;

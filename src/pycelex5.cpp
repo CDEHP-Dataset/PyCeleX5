@@ -157,6 +157,44 @@ uint32_t PyCeleX5::getOpticalFlowFrameTime()
     return result;
 }
 
+void PyCeleX5::setSensorLoopMode(CeleX5::CeleX5Mode mode, int loopNum)
+{
+    this->m_pCeleX5->setSensorLoopMode(mode, loopNum);
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.setSensorLoopMode(): loop " << loopNum << " in mode " << printCeleX5Mode(mode) << endl;
+    }
+}
+
+CeleX5::CeleX5Mode PyCeleX5::getSensorLoopMode(int loopNum)
+{
+    CeleX5::CeleX5Mode result = this->m_pCeleX5->getSensorLoopMode(loopNum);
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.getSensorLoopMode(): loop " << loopNum << " in mode " << printCeleX5Mode(mode) << endl;
+    }
+    return result;
+}
+
+void PyCeleX5::setLoopModeEnabled(bool enable)
+{
+    this->m_pCeleX5->setLoopModeEnabled(enable);
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.setLoopModeEnabled(): set loop mode " << (enable ? "enable" : "disable") << endl;
+    }
+}
+
+bool PyCeleX5::isLoopModeEnabled()
+{
+    bool result = this->m_pCeleX5->isLoopModeEnabled();
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.isLoopModeEnabled(): loop mode " << (enable ? "enabled" : "disabled") << endl;
+    }
+    return result;
+}
+
 std::string PyCeleX5::printDeviceType(CeleX5::DeviceType type)
 {
     std::string result;

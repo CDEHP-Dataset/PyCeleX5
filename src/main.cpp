@@ -64,5 +64,9 @@ PYBIND11_MODULE(PyCeleX5, m)
         .def("setEventFrameTime", &PyCeleX5::setEventFrameTime, "void setEventFrameTime(uint32_t microsecond)", py::arg("microsecond"))
         .def("getEventFrameTime", &PyCeleX5::getEventFrameTime, "uint32_t getEventFrameTime()")
         .def("setOpticalFlowFrameTime", &PyCeleX5::setOpticalFlowFrameTime, "void setOpticalFlowFrameTime(uint32_t millisecond)", py::arg("millisecond"))
-        .def("getOpticalFlowFrameTime", &PyCeleX5::getOpticalFlowFrameTime, "uint32_t getOpticalFlowFrameTime()");
+        .def("getOpticalFlowFrameTime", &PyCeleX5::getOpticalFlowFrameTime, "uint32_t getOpticalFlowFrameTime()")
+        .def("setSensorLoopMode", &PyCeleX5::setSensorLoopMode, "void setSensorLoopMode(CeleX5Mode mode, int loopNum)", py::arg("mode"), py::arg("loopNum"))
+        .def("getSensorLoopMode", &PyCeleX5::getSensorLoopMode, "CeleX5Mode getSensorLoopMode(int loopNum)", py::arg("loopNum"))
+        .def("setLoopModeEnabled", &PyCeleX5::setLoopModeEnabled, "void setLoopModeEnabled(bool enable)", py::arg("enable"))
+        .def("isLoopModeEnabled", &PyCeleX5::isLoopModeEnabled, "bool isLoopModeEnabled()");
 }
