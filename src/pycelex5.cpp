@@ -190,9 +190,27 @@ bool PyCeleX5::isLoopModeEnabled()
     bool result = this->m_pCeleX5->isLoopModeEnabled();
     if (this->m_bDebug)
     {
-        cout << "PyCeleX5.isLoopModeEnabled(): loop mode " << (enable ? "enabled" : "disabled") << endl;
+        cout << "PyCeleX5.isLoopModeEnabled(): loop mode is " << (enable ? "enabled" : "disabled") << endl;
     }
     return result;
+}
+
+void PyCeleX5::setEventDuration(uint32_t value)
+{
+    this->m_pCeleX5->setEventDuration(value);
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.setEventDuration(): " << value << endl;
+    }
+}
+
+void PyCeleX5::setPictureNumber(uint32_t num, CeleX5::CeleX5Mode mode)
+{
+    this->m_pCeleX5->setPictureNumber(num, mode);
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.setPictureNumber(): mode " << printCeleX5Mode(mode) << " number " << num << endl;
+    }
 }
 
 std::string PyCeleX5::printDeviceType(CeleX5::DeviceType type)

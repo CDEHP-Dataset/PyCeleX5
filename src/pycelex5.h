@@ -68,6 +68,11 @@ public:
     // 2.3.23 isLoopModeEnabled
     bool isLoopModeEnabled();
 
+    // 2.3.24 setEventDuration
+    void setEventDuration(uint32_t value);
+    // 2.3.25 setPictureNumber
+    void setPictureNumber(uint32_t num, CeleX5::CeleX5Mode mode);
+
 private:
     CeleX5 *m_pCeleX5;
     bool m_bDebug;

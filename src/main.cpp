@@ -68,5 +68,7 @@ PYBIND11_MODULE(PyCeleX5, m)
         .def("setSensorLoopMode", &PyCeleX5::setSensorLoopMode, "void setSensorLoopMode(CeleX5Mode mode, int loopNum)", py::arg("mode"), py::arg("loopNum"))
         .def("getSensorLoopMode", &PyCeleX5::getSensorLoopMode, "CeleX5Mode getSensorLoopMode(int loopNum)", py::arg("loopNum"))
         .def("setLoopModeEnabled", &PyCeleX5::setLoopModeEnabled, "void setLoopModeEnabled(bool enable)", py::arg("enable"))
-        .def("isLoopModeEnabled", &PyCeleX5::isLoopModeEnabled, "bool isLoopModeEnabled()");
+        .def("isLoopModeEnabled", &PyCeleX5::isLoopModeEnabled, "bool isLoopModeEnabled()")
+        .def("setEventDuration", &PyCeleX5::setEventDuration, "void setEventDuration(uint32_t value)", py::arg("value"))
+        .def("setPictureNumber", &PyCeleX5::setPictureNumber, "void setPictureNumber(uint32_t num, CeleX5::CeleX5Mode mode)", py::arg("num"), py::arg("mode"));
 }
