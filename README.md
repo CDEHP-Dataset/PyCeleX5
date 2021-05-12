@@ -1,5 +1,10 @@
 # PyCeleX5
 
+## 环境
+
+* 编译并安装好OpenCV 3.3
+* 确保`ldd lib/libCeleX.so`中的所有库可以正确找到
+
 ## 编译
 
 ```bash
@@ -8,4 +13,10 @@ mkdir build
 cd build
 cmake ..
 make
+```
+
+## 测试
+
+```bash
+sudo python3 main.py
 ```

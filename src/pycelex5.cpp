@@ -16,7 +16,6 @@ PyCeleX5::~PyCeleX5()
     cout << "PyCeleX5.~PyCeleX5()" << endl;
 }
 
-// 2.3.1 openSensor
 bool PyCeleX5::openSensor(CeleX5::DeviceType type)
 {
     bool result = m_pCeleX5->openSensor(type);
@@ -27,7 +26,6 @@ bool PyCeleX5::openSensor(CeleX5::DeviceType type)
     return result;
 }
 
-// 2.3.2 isSensorReady
 bool PyCeleX5::isSensorReady()
 {
     bool result = this->m_pCeleX5->isSensorReady();
@@ -38,9 +36,6 @@ bool PyCeleX5::isSensorReady()
     return result;
 }
 
-// 2.3.3 getCeleXRawData
-
-// 2.3.4 setFpnFile
 bool PyCeleX5::setFpnFile(const std::string &fpnFile)
 {
     bool result = this->m_pCeleX5->setFpnFile(fpnFile);
@@ -52,7 +47,6 @@ bool PyCeleX5::setFpnFile(const std::string &fpnFile)
     return result;
 }
 
-// 2.3.5 generateFPN
 void PyCeleX5::generateFpn(const std::string &fpnFile)
 {
     this->m_pCeleX5->generateFPN(fpnFile);
@@ -62,23 +56,21 @@ void PyCeleX5::generateFpn(const std::string &fpnFile)
     }
 }
 
-// 2.3.6 setSensorFixedMode
 void PyCeleX5::setSensorFixedMode(CeleX5::CeleX5Mode mode)
 {
     this->m_pCeleX5->setSensorFixedMode(mode);
     if (this->m_bDebug)
     {
-        cout << "PyCeleX5.setSensorFixedMode(): called" << endl;
+        cout << "PyCeleX5.setSensorFixedMode(): mode " << mode << endl;
     }
 }
 
-// 2.3.7 getSensorFixedMode
 CeleX5::CeleX5Mode PyCeleX5::getSensorFixedMode()
 {
     CeleX5::CeleX5Mode result = this->m_pCeleX5->getSensorFixedMode();
     if (this->m_bDebug)
     {
-        cout << "PyCeleX5.getSensorFixedMode(): called" << endl;
+        cout << "PyCeleX5.getSensorFixedMode(): mode " << result << endl;
     }
     return result;
 }
