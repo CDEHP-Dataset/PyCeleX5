@@ -15,7 +15,7 @@ public:
     void generateFpn(const std::string &fpnFile);
 
     void setSensorFixedMode(CeleX5::CeleX5Mode mode);
-    Celex5::CeleX5Mode getSensorFixedMode();
+    CeleX5::CeleX5Mode getSensorFixedMode();
 
 private:
     CeleX5 *m_pCeleX5;
