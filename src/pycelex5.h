@@ -100,6 +100,14 @@ public:
     // 2.3.35 getEventDataFormat
     int getEventDataFormat();
 
+    // 2.3.36 reset
+    void reset();
+
+    // 2.3.37 startRecording
+    void startRecording(std::string filePath);
+    // 2.3.38 stopRecording
+    void stopRecording();
+
 private:
     CeleX5 *m_pCeleX5;
     bool m_bDebug;

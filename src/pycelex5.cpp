@@ -308,6 +308,33 @@ int PyCeleX5::getEventDataFormat()
     return result;
 }
 
+void PyCeleX5::reset()
+{
+    this->m_pCeleX5->reset();
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.reset(): called" << endl;
+    }
+}
+
+void PyCeleX5::startRecording(std::string filePath)
+{
+    this->m_pCeleX5->startRecording(filePath);
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.startRecording(): recording to " << filePath << endl;
+    }
+}
+
+void PyCeleX5::stopRecording()
+{
+    this->m_pCeleX5->stopRecording();
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.stopRecording(): called" << endl;
+    }
+}
+
 std::string PyCeleX5::printDeviceType(CeleX5::DeviceType type)
 {
     std::string result;

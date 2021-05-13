@@ -70,7 +70,7 @@ PYBIND11_MODULE(PyCeleX5, m)
         .def("setLoopModeEnabled", &PyCeleX5::setLoopModeEnabled, "void setLoopModeEnabled(bool enable)", py::arg("enable"))
         .def("isLoopModeEnabled", &PyCeleX5::isLoopModeEnabled, "bool isLoopModeEnabled()")
         .def("setEventDuration", &PyCeleX5::setEventDuration, "void setEventDuration(uint32_t value)", py::arg("value"))
-        .def("setPictureNumber", &PyCeleX5::setPictureNumber, "void setPictureNumber(uint32_t num, CeleX5::CeleX5Mode mode)", py::arg("num"), py::arg("mode"))
+        .def("setPictureNumber", &PyCeleX5::setPictureNumber, "void setPictureNumber(uint32_t num, CeleX5Mode mode)", py::arg("num"), py::arg("mode"))
         .def("setThreshold", &PyCeleX5::setThreshold, "void setThreshold(uint32_t value)", py::arg("value"))
         .def("getThreshold", &PyCeleX5::getThreshold, "uint32_t getThreshold()")
         .def("setBrightness", &PyCeleX5::setBrightness, "void setBrightness(uint32_t value)", py::arg("value"))
@@ -80,5 +80,8 @@ PYBIND11_MODULE(PyCeleX5, m)
         .def("setClockRate", &PyCeleX5::setClockRate, "void setClockRate(uint32_t value)", py::arg("value"))
         .def("getClockRate", &PyCeleX5::getClockRate, "uint32_t getClockRate()")
         .def("setEventDataFormat", &PyCeleX5::setEventDataFormat, "void setEventDataFormat(int format)", py::arg("format"))
-        .def("getEventDataFormat", &PyCeleX5::getEventDataFormat, "int getEventDataFormat()");
+        .def("getEventDataFormat", &PyCeleX5::getEventDataFormat, "int getEventDataFormat()")
+        .def("reset", &PyCeleX5::reset, "void reset()")
+        .def("startRecording", &PyCeleX5::startRecording, "void startRecording(string filePath)", py::arg("filePath"))
+        .def("stopRecording", &PyCeleX5::stopRecording, "void stopRecording()");
 }
