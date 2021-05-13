@@ -75,6 +75,21 @@ public:
     // 2.3.25 setPictureNumber
     void setPictureNumber(uint32_t num, CeleX5::CeleX5Mode mode);
 
+    // 2.3.26 setThreshold
+    void setThreshold(uint32_t value);
+    // 2.3.27 getThreshold
+    uint32_t getThreshold();
+
+    // 2.3.28 setBrightness
+    void setBrightness(uint32_t value);
+    // 2.3.29 getBrightness
+    uint32_t getBrightness();
+
+    // 2.3.30 setContrast
+    void setContrast(uint32_t value);
+    // 2.3.31 getContrast
+    uint32_t getContrast();
+
 private:
     CeleX5 *m_pCeleX5;
     bool m_bDebug;

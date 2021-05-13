@@ -171,7 +171,7 @@ CeleX5::CeleX5Mode PyCeleX5::getSensorLoopMode(int loopNum)
     CeleX5::CeleX5Mode result = this->m_pCeleX5->getSensorLoopMode(loopNum);
     if (this->m_bDebug)
     {
-        cout << "PyCeleX5.getSensorLoopMode(): loop " << loopNum << " in mode " << printCeleX5Mode(mode) << endl;
+        cout << "PyCeleX5.getSensorLoopMode(): loop " << loopNum << " in mode " << printCeleX5Mode(result) << endl;
     }
     return result;
 }
@@ -190,7 +190,7 @@ bool PyCeleX5::isLoopModeEnabled()
     bool result = this->m_pCeleX5->isLoopModeEnabled();
     if (this->m_bDebug)
     {
-        cout << "PyCeleX5.isLoopModeEnabled(): loop mode is " << (enable ? "enabled" : "disabled") << endl;
+        cout << "PyCeleX5.isLoopModeEnabled(): loop mode is " << (result ? "enabled" : "disabled") << endl;
     }
     return result;
 }
@@ -211,6 +211,63 @@ void PyCeleX5::setPictureNumber(uint32_t num, CeleX5::CeleX5Mode mode)
     {
         cout << "PyCeleX5.setPictureNumber(): mode " << printCeleX5Mode(mode) << " number " << num << endl;
     }
+}
+
+void PyCeleX5::setThreshold(uint32_t value)
+{
+    this->m_pCeleX5->setThreshold(value);
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.setThreshold(): " << value << endl;
+    }
+}
+
+uint32_t PyCeleX5::getThreshold()
+{
+    uint32_t result = this->m_pCeleX5->getThreshold();
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.getThreshold(): " << result << endl;
+    }
+    return result;
+}
+
+void PyCeleX5::setBrightness(uint32_t value)
+{
+    this->m_pCeleX5->setBrightness(value);
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.setBrightness(): " << value << endl;
+    }
+}
+
+uint32_t PyCeleX5::getBrightness()
+{
+    uint32_t result = this->m_pCeleX5->getBrightness();
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.getBrightness(): " << result << endl;
+    }
+    return result;
+}
+
+void PyCeleX5::setContrast(uint32_t value)
+{
+    this->m_pCeleX5->setContrast(value);
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.setContrast(): " << value << endl;
+    }
+}
+
+uint32_t PyCeleX5::getContrast()
+{
+    uint32_t result = this->m_pCeleX5->getContrast();
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.getContrast(): " << result << endl;
+    }
+    return result;
 }
 
 std::string PyCeleX5::printDeviceType(CeleX5::DeviceType type)
