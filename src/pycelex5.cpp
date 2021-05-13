@@ -317,7 +317,7 @@ void PyCeleX5::reset()
     }
 }
 
-void PyCeleX5::startRecording(std::string filePath)
+void PyCeleX5::startRecording(std::string &filePath)
 {
     this->m_pCeleX5->startRecording(filePath);
     if (this->m_bDebug)
@@ -335,7 +335,7 @@ void PyCeleX5::stopRecording()
     }
 }
 
-bool PyCeleX5::openBinFile(std::string filePath)
+bool PyCeleX5::openBinFile(std::string &filePath)
 {
     bool result = this->m_pCeleX5->openBinFile(filePath);
     if (this->m_bDebug)
@@ -351,17 +351,222 @@ bool PyCeleX5::readBinFileData()
     bool result = this->m_pCeleX5->readBinFileData();
     if (this->m_bDebug)
     {
-        cout << "PyCeleX5.readBinFileData(): file has " << (result ? "" : "no") < " more data" << endl;
+        cout << "PyCeleX5.readBinFileData(): file has " << (result ? "" : "no") << " more data" << endl;
     }
     return result;
 }
 
-CeleX5::BinFileAttributes PyCeleX5::getBinFileAttributes(std::string &binFile)
+CeleX5::BinFileAttributes PyCeleX5::getBinFileAttributes()
 {
-    CeleX5::BinFileAttributes result = this->m_pCeleX5->getBinFileAttributes(binFile);
+    CeleX5::BinFileAttributes result = this->m_pCeleX5->getBinFileAttributes();
     if (this->m_bDebug)
     {
-        cout << "PyCeleX5.getBinFileAttributes(): " << binFile << endl;
+        cout << "PyCeleX5.getBinFileAttributes(): called" << endl;
+    }
+    return result;
+}
+
+void PyCeleX5::setRowDisabled(uint8_t rowMask)
+{
+    this->m_pCeleX5->setRowDisabled(rowMask);
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.setRowDisabled(): " << rowMask << endl;
+    }
+}
+
+void PyCeleX5::disableFrameModule()
+{
+    this->m_pCeleX5->disableFrameModule();
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.disableFrameModule(): called" << endl;
+    }
+}
+
+void PyCeleX5::enableFrameModule()
+{
+    this->m_pCeleX5->enableFrameModule();
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.enableFrameModule(): called" << endl;
+    }
+}
+
+bool PyCeleX5::isFrameModuleEnabled()
+{
+    bool result = this->m_pCeleX5->isFrameModuleEnabled();
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.isFrameModuleEnabled(): " << (result ? "enabled" : "disabled") << endl;
+    }
+    return result;
+}
+
+void PyCeleX5::disableEventStreamModule()
+{
+    this->m_pCeleX5->disableEventStreamModule();
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.disableEventStreamModule(): called" << endl;
+    }
+}
+
+void PyCeleX5::enableEventStreamModule()
+{
+    this->m_pCeleX5->enableEventStreamModule();
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.enableEventStreamModule(): called" << endl;
+    }
+}
+
+bool PyCeleX5::isEventStreamEnabled()
+{
+    bool result = this->m_pCeleX5->isEventStreamEnabled();
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.isEventStreamEnabled(): " << (result ? "enabled" : "disabled") << endl;
+    }
+    return result;
+}
+
+void PyCeleX5::disableIMUModule()
+{
+    this->m_pCeleX5->disableIMUModule();
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.disableIMUModule(): called" << endl;
+    }
+}
+
+void PyCeleX5::enableIMUModule()
+{
+    this->m_pCeleX5->enableIMUModule();
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.enableIMUModule(): called" << endl;
+    }
+}
+
+bool PyCeleX5::isIMUModuleEnabled()
+{
+    bool result = this->m_pCeleX5->isEventStreamEnabled();
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.isEventStreamEnabled(): " << (result ? "enabled" : "disabled") << endl;
+    }
+    return result;
+}
+
+void PyCeleX5::disableEventDenoising()
+{
+    this->m_pCeleX5->disableEventDenoising();
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.disableEventDenoising(): called" << endl;
+    }
+}
+
+void PyCeleX5::enableEventDenoising()
+{
+    this->m_pCeleX5->enableEventDenoising();
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.enableEventDenoising(): called" << endl;
+    }
+}
+
+bool PyCeleX5::isEventDenoisingEnabled()
+{
+    bool result = this->m_pCeleX5->isEventDenoisingEnabled();
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.isEventDenoisingEnabled(): " << (result ? "enabled" : "disabled") << endl;
+    }
+    return result;
+}
+
+void PyCeleX5::disableFrameDenoising()
+{
+    this->m_pCeleX5->disableFrameDenoising();
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.disableFrameDenoising(): called" << endl;
+    }
+}
+
+void PyCeleX5::enableFrameDenoising()
+{
+    this->m_pCeleX5->enableFrameDenoising();
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.enableFrameDenoising(): called" << endl;
+    }
+}
+
+bool PyCeleX5::isFrameDenoisingEnabled()
+{
+    bool result = this->m_pCeleX5->isFrameDenoisingEnabled();
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.isFrameDenoisingEnabled(): " << (result ? "enabled" : "disabled") << endl;
+    }
+    return result;
+}
+
+void PyCeleX5::disableEventCountDensity()
+{
+    this->m_pCeleX5->disableEventCountDensity();
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.disableEventCountDensity(): called" << endl;
+    }
+}
+
+void PyCeleX5::enableEventCountDensity()
+{
+    this->m_pCeleX5->enableEventCountDensity();
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.enableEventCountDensity(): called" << endl;
+    }
+}
+
+bool PyCeleX5::isEventCountDensityEnabled()
+{
+    bool result = this->m_pCeleX5->isEventCountDensityEnabled();
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.isEventCountDensityEnabled(): " << (result ? "enabled" : "disabled") << endl;
+    }
+    return result;
+}
+
+void PyCeleX5::disableEventOpticalFlow()
+{
+    this->m_pCeleX5->disableEventOpticalFlow();
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.disableEventOpticalFlow(): called" << endl;
+    }
+}
+
+void PyCeleX5::enableEventOpticalFlow()
+{
+    this->m_pCeleX5->enableEventOpticalFlow();
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.enableEventOpticalFlow(): called" << endl;
+    }
+}
+
+bool PyCeleX5::isEventOpticalFlowEnabled()
+{
+    bool result = this->m_pCeleX5->isEventOpticalFlowEnabled();
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.isEventOpticalFlowEnabled(): " << (result ? "enabled" : "disabled") << endl;
     }
     return result;
 }

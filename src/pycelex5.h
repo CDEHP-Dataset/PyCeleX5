@@ -104,16 +104,70 @@ public:
     void reset();
 
     // 2.3.37 startRecording
-    void startRecording(std::string filePath);
+    void startRecording(std::string &filePath);
     // 2.3.38 stopRecording
     void stopRecording();
 
     // 2.3.39 open Bin File
-    bool openBinFile(std::string filePath);
+    bool openBinFile(std::string &filePath);
     // 2.3.40 read BinFile Data
     bool readBinFileData();
     // 2.3.41 get BinFile Attributes
-    CeleX5::BinFileAttributes getBinFileAttributes(std::string &binFile);
+    CeleX5::BinFileAttributes getBinFileAttributes();
+
+    // 2.3.42 get IMUData
+
+    // 2.3.43 setRowDisabled
+    void setRowDisabled(uint8_t rowMask);
+
+    // 2.3.44 disableFrameModule
+    void disableFrameModule();
+    // 2.3.45 enableFrameModule
+    void enableFrameModule();
+    // 2.3.46 isFrameModuleEnabled
+    bool isFrameModuleEnabled();
+
+    // 2.3.47 disableEventStreamModule
+    void disableEventStreamModule();
+    // 2.3.48 enableEventStreamModule
+    void enableEventStreamModule();
+    // 2.3.49 is EventStream Enabled
+    bool isEventStreamEnabled();
+
+    // 2.3.50 disableIMUModule
+    void disableIMUModule();
+    // 2.3.51 enableIMUModule
+    void enableIMUModule();
+    // 2.3.52 isIMUModuleEnabled
+    bool isIMUModuleEnabled();
+
+    // 2.3.53 disableEventDenoising
+    void disableEventDenoising();
+    // 2.3.54 enableEventDenoising
+    void enableEventDenoising();
+    // 2.3.55 isEventDenoisingEnabled
+    bool isEventDenoisingEnabled();
+
+    // 2.3.56 disableFrameDenoising
+    void disableFrameDenoising();
+    // 2.3.57 enableFrameDenoising
+    void enableFrameDenoising();
+    // 2.3.58 isFrameDenoisingEnabled
+    bool isFrameDenoisingEnabled();
+
+    // 2.3.59 disableEventCount Density
+    void disableEventCountDensity();
+    // 2.3.60 enableEventCount Density
+    void enableEventCountDensity();
+    // 2.3.61 isEventCount Density Enabled
+    bool isEventCountDensityEnabled();
+
+    // 2.3.62 disableEventOpticalFlow
+    void disableEventOpticalFlow();
+    // 2.3.63 enableEventOpticalFlow
+    void enableEventOpticalFlow();
+    // 2.3.64 isE ventOpticalFlowEnabled
+    bool isEventOpticalFlowEnabled();
 
 private:
     CeleX5 *m_pCeleX5;

@@ -20,6 +20,13 @@ def main():
     # celex5.getContrast()
     celex5.getClockRate()
     celex5.getEventDataFormat()
+    celex5.isFrameModuleEnabled()
+    celex5.isEventStreamEnabled()
+    celex5.isIMUModuleEnabled()
+    celex5.isEventDenoisingEnabled()
+    celex5.isFrameDenoisingEnabled()
+    celex5.isEventCountDensityEnabled()
+    celex5.isEventOpticalFlowEnabled()
 
 
 
