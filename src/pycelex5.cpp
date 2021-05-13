@@ -270,6 +270,44 @@ uint32_t PyCeleX5::getContrast()
     return result;
 }
 
+void PyCeleX5::setClockRate(uint32_t value)
+{
+    this->m_pCeleX5->setClockRate(value);
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.setClockRate(): " << value << endl;
+    }
+}
+
+uint32_t PyCeleX5::getClockRate()
+{
+    uint32_t result = this->m_pCeleX5->getClockRate();
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.getClockRate(): " << result << endl;
+    }
+    return result;
+}
+
+void PyCeleX5::setEventDataFormat(int format)
+{
+    this->m_pCeleX5->setEventDataFormat(format);
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.setEventDataFormat(): " << format << endl;
+    }
+}
+
+int PyCeleX5::getEventDataFormat()
+{
+    uint32_t result = this->m_pCeleX5->getEventDataFormat();
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.getEventDataFormat(): " << result << endl;
+    }
+    return result;
+}
+
 std::string PyCeleX5::printDeviceType(CeleX5::DeviceType type)
 {
     std::string result;

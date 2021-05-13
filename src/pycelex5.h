@@ -90,6 +90,16 @@ public:
     // 2.3.31 getContrast
     uint32_t getContrast();
 
+    // 2.3.32 setClockRate
+    void setClockRate(uint32_t value);
+    // 2.3.33 getClockRate
+    uint32_t getClockRate();
+
+    // 2.3.34 setEventDataFormat
+    void setEventDataFormat(int format);
+    // 2.3.35 getEventDataFormat
+    int getEventDataFormat();
+
 private:
     CeleX5 *m_pCeleX5;
     bool m_bDebug;

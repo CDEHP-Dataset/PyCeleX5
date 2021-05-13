@@ -76,5 +76,9 @@ PYBIND11_MODULE(PyCeleX5, m)
         .def("setBrightness", &PyCeleX5::setBrightness, "void setBrightness(uint32_t value)", py::arg("value"))
         .def("getBrightness", &PyCeleX5::getBrightness, "uint32_t getBrightness()")
         .def("setContrast", &PyCeleX5::setContrast, "void setContrast(uint32_t value)", py::arg("value"))
-        .def("getContrast", &PyCeleX5::getContrast, "uint32_t getContrast()");
+        .def("getContrast", &PyCeleX5::getContrast, "uint32_t getContrast()")
+        .def("setClockRate", &PyCeleX5::setClockRate, "void setClockRate(uint32_t value)", py::arg("value"))
+        .def("getClockRate", &PyCeleX5::getClockRate, "uint32_t getClockRate()")
+        .def("setEventDataFormat", &PyCeleX5::setEventDataFormat, "void setEventDataFormat(int format)", py::arg("format"))
+        .def("getEventDataFormat", &PyCeleX5::getEventDataFormat, "int getEventDataFormat()");
 }
