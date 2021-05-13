@@ -156,11 +156,11 @@ public:
     bool isFrameDenoisingEnabled();
 
     // 2.3.59 disableEventCount Density
-    void disableEventCountDensity();
+    void disableEventCountSlice();
     // 2.3.60 enableEventCount Density
-    void enableEventCountDensity();
+    void enableEventCountSlice();
     // 2.3.61 isEventCount Density Enabled
-    bool isEventCountDensityEnabled();
+    bool isEventCountSliceEnabled();
 
     // 2.3.62 disableEventOpticalFlow
     void disableEventOpticalFlow();

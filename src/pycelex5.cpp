@@ -515,30 +515,30 @@ bool PyCeleX5::isFrameDenoisingEnabled()
     return result;
 }
 
-void PyCeleX5::disableEventCountDensity()
+void PyCeleX5::disableEventCountSlice()
 {
-    this->m_pCeleX5->disableEventCountDensity();
+    this->m_pCeleX5->disableEventCountSlice();
     if (this->m_bDebug)
     {
-        cout << "PyCeleX5.disableEventCountDensity(): called" << endl;
+        cout << "PyCeleX5.disableEventCountSlice(): called" << endl;
     }
 }
 
-void PyCeleX5::enableEventCountDensity()
+void PyCeleX5::enableEventCountSlice()
 {
-    this->m_pCeleX5->enableEventCountDensity();
+    this->m_pCeleX5->enableEventCountSlice();
     if (this->m_bDebug)
     {
-        cout << "PyCeleX5.enableEventCountDensity(): called" << endl;
+        cout << "PyCeleX5.enableEventCountSlice(): called" << endl;
     }
 }
 
-bool PyCeleX5::isEventCountDensityEnabled()
+bool PyCeleX5::isEventCountSliceEnabled()
 {
-    bool result = this->m_pCeleX5->isEventCountDensityEnabled();
+    bool result = this->m_pCeleX5->isEventCountSliceEnabled();
     if (this->m_bDebug)
     {
-        cout << "PyCeleX5.isEventCountDensityEnabled(): " << (result ? "enabled" : "disabled") << endl;
+        cout << "PyCeleX5.isEventCountSliceEnabled(): " << (result ? "enabled" : "disabled") << endl;
     }
     return result;
 }
