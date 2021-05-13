@@ -251,24 +251,24 @@ uint32_t PyCeleX5::getBrightness()
     return result;
 }
 
-void PyCeleX5::setContrast(uint32_t value)
-{
-    this->m_pCeleX5->setContrast(value);
-    if (this->m_bDebug)
-    {
-        cout << "PyCeleX5.setContrast(): " << value << endl;
-    }
-}
+// void PyCeleX5::setContrast(uint32_t value)
+// {
+//     this->m_pCeleX5->setContrast(value);
+//     if (this->m_bDebug)
+//     {
+//         cout << "PyCeleX5.setContrast(): " << value << endl;
+//     }
+// }
 
-uint32_t PyCeleX5::getContrast()
-{
-    uint32_t result = this->m_pCeleX5->getContrast();
-    if (this->m_bDebug)
-    {
-        cout << "PyCeleX5.getContrast(): " << result << endl;
-    }
-    return result;
-}
+// uint32_t PyCeleX5::getContrast()
+// {
+//     uint32_t result = this->m_pCeleX5->getContrast();
+//     if (this->m_bDebug)
+//     {
+//         cout << "PyCeleX5.getContrast(): " << result << endl;
+//     }
+//     return result;
+// }
 
 void PyCeleX5::setClockRate(uint32_t value)
 {

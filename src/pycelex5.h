@@ -86,9 +86,9 @@ public:
     uint32_t getBrightness();
 
     // 2.3.30 setContrast
-    void setContrast(uint32_t value);
+    // void setContrast(uint32_t value);
     // 2.3.31 getContrast
-    uint32_t getContrast();
+    // uint32_t getContrast();
 
     // 2.3.32 setClockRate
     void setClockRate(uint32_t value);

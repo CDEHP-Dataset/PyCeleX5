@@ -15,7 +15,7 @@ def main():
     celex5.getOpticalFlowTime()
     celex5.getThreshold()
     celex5.getBrightness()
-    celex5.getContrast()
+    # celex5.getContrast()
     celex5.getClockRate()
     celex5.getEventDataFormat()
 
