@@ -108,6 +108,13 @@ public:
     // 2.3.38 stopRecording
     void stopRecording();
 
+    // 2.3.39 open Bin File
+    bool openBinFile(std::string filePath);
+    // 2.3.40 read BinFile Data
+    bool readBinFileData();
+    // 2.3.41 get BinFile Attributes
+    CeleX5::BinFileAttributes getBinFileAttributes(std::string &binFile);
+
 private:
     CeleX5 *m_pCeleX5;
     bool m_bDebug;

@@ -335,6 +335,37 @@ void PyCeleX5::stopRecording()
     }
 }
 
+bool PyCeleX5::openBinFile(std::string filePath)
+{
+    bool result = this->m_pCeleX5->openBinFile(filePath);
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.openBinFile(): " << filePath << endl;
+        cout << "PyCeleX5.openBinFile(): open file " << ((result ? "successful" : "failed")) << endl;
+    }
+    return result;
+}
+
+bool PyCeleX5::readBinFileData()
+{
+    bool result = this->m_pCeleX5->readBinFileData();
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.readBinFileData(): file has " << (result ? "" : "no") < " more data" << endl;
+    }
+    return result;
+}
+
+CeleX5::BinFileAttributes PyCeleX5::getBinFileAttributes(std::string &binFile)
+{
+    CeleX5::BinFileAttributes result = this->m_pCeleX5->getBinFileAttributes(binFile);
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.getBinFileAttributes(): " << binFile << endl;
+    }
+    return result;
+}
+
 std::string PyCeleX5::printDeviceType(CeleX5::DeviceType type)
 {
     std::string result;

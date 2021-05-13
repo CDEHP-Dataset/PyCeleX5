@@ -13,6 +13,17 @@ PYBIND11_MODULE(PyCeleX5, m)
     m.attr("RESOLUTION") = PyCeleX5::sm_uiResolution;
 
     // py::class_<CeleX5> celex5(m, "CeleX5");
+    py::class_<CeleX5::BinFileAttributes>(m, "BinFileAttributes")
+        .def(py::init<>())
+        .def_readwrite("dataType", &CeleX5::BinFileAttributes::dataType)
+        .def_readwrite("loopAMode", &CeleX5::BinFileAttributes::loopAMode)
+        .def_readwrite("loopBMode", &CeleX5::BinFileAttributes::loopBMode)
+        .def_readwrite("loopCMode", &CeleX5::BinFileAttributes::loopCMode)
+        .def_readwrite("eventDataFormat", &CeleX5::BinFileAttributes::eventDataFormat)
+        .def_readwrite("hour", &CeleX5::BinFileAttributes::hour)
+        .def_readwrite("minute", &CeleX5::BinFileAttributes::minute)
+        .def_readwrite("second", &CeleX5::BinFileAttributes::second)
+        .def_readwrite("packageCount", &CeleX5::BinFileAttributes::packageCount);
 
     py::enum_<CeleX5::DeviceType>(m, "DeviceType")
         .value("Unknown_Devive", CeleX5::DeviceType::Unknown_Devive)
@@ -83,5 +94,8 @@ PYBIND11_MODULE(PyCeleX5, m)
         .def("getEventDataFormat", &PyCeleX5::getEventDataFormat, "int getEventDataFormat()")
         .def("reset", &PyCeleX5::reset, "void reset()")
         .def("startRecording", &PyCeleX5::startRecording, "void startRecording(string filePath)", py::arg("filePath"))
-        .def("stopRecording", &PyCeleX5::stopRecording, "void stopRecording()");
+        .def("stopRecording", &PyCeleX5::stopRecording, "void stopRecording()")
+        .def("openBinFile", &PyCeleX5::openBinFile, "bool openBinFile(string filePath)", py::arg("filePath"))
+        .def("readBinFileData", &PyCeleX5::readBinFileData, "bool readBinFileData()")
+        .def("getBinFileAttributes", &PyCeleX5::getBinFileAttributes, "BinFileAttributes getBinFileAttributes(string &binFile)", py::arg("binFile"));
 }
