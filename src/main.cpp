@@ -1,6 +1,6 @@
 #include <pybind11/pybind11.h>
-#include "pycelex5.h"
 #include "../include/celex5/celex5.h"
+#include "pycelex5.h"
 
 namespace py = pybind11;
 
