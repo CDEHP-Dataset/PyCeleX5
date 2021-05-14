@@ -31,7 +31,7 @@ PYBIND11_MODULE(PyCeleX5, m)
         .value("CeleX5_OpalKelly", CeleX5::DeviceType::CeleX5_OpalKelly)
         .export_values();
 
-    py::enum_<CeleX5::CeleX5Mode>(m, "Celex5Mode")
+    py::enum_<CeleX5::CeleX5Mode>(m, "CeleX5Mode")
         .value("Unknown_Mode", CeleX5::CeleX5Mode::Unknown_Mode)
         .value("Event_Off_Pixel_Timestamp_Mode", CeleX5::CeleX5Mode::Event_Off_Pixel_Timestamp_Mode)
         .value("Event_In_Pixel_Timestamp_Mode", CeleX5::CeleX5Mode::Event_In_Pixel_Timestamp_Mode)
@@ -62,6 +62,8 @@ PYBIND11_MODULE(PyCeleX5, m)
 
     py::class_<PyCeleX5>(m, "PyCeleX5")
         .def(py::init<bool>(), py::arg("debug") = true)
+        .def("setRotateType", &PyCeleX5::setRotateType, "void setRotateType(int type)", py::arg("type"))
+        .def("getRotateType", &PyCeleX5::getRotateType, "int getRotateType()")
         .def("openSensor", &PyCeleX5::openSensor, "bool openSensor(DeviceType type)", py::arg("type") = CeleX5::DeviceType::CeleX5_MIPI)
         .def("isSensorReady", &PyCeleX5::isSensorReady, "bool isSensorReady()")
         .def("setFpnFile", &PyCeleX5::setFpnFile, "bool setFpnFile(string fpnFile)", py::arg("fpnFile"))

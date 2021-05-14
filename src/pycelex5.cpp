@@ -14,12 +14,34 @@ PyCeleX5::PyCeleX5(bool debug)
     this->m_pCeleX5 = new CeleX5();
     this->m_bDebug = debug;
     cout << "PyCeleX5.PyCeleX5(): " << (debug ? "in debug mode" : "") << endl;
+    cout << "PyCeleX5.PyCeleX5(): serial number " << this->m_pCeleX5->getSerialNumber() << endl;
+    cout << "PyCeleX5.PyCeleX5(): firmware version " << this->m_pCeleX5->getFirmwareVersion() << endl;
+    cout << "PyCeleX5.PyCeleX5(): firmware date " << this->m_pCeleX5->getFirmwareDate() << endl;
 }
 
 PyCeleX5::~PyCeleX5()
 {
     delete this->m_pCeleX5;
     cout << "PyCeleX5.~PyCeleX5()" << endl;
+}
+
+void PyCeleX5::setRotateType(int type)
+{
+    this->m_pCeleX5->setRotateType(type);
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.setRotateType(): " << type << endl;
+    }
+}
+
+int PyCeleX5::getRotateType()
+{
+    int result = this->m_pCeleX5->getRotateType();
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.getRotateType(): " << result << endl;
+    }
+    return result;
 }
 
 bool PyCeleX5::openSensor(CeleX5::DeviceType type)

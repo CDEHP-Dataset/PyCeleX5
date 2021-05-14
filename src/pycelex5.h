@@ -16,6 +16,9 @@ public:
     PyCeleX5(bool debug);
     ~PyCeleX5();
 
+    void setRotateType(int type);
+    int getRotateType();
+
     // 2.3.1 openSensor
     bool openSensor(CeleX5::DeviceType type);
     // 2.3.2 isSensorReady

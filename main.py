@@ -9,13 +9,18 @@ celex5 = PyCeleX5.PyCeleX5(debug=True)
 
 def showImg():
     while True:
-        img = celex5.getFullPicBuffer()
-        cv2.imshow("fullpic", img)
+        rgb = celex5.getFullPicBuffer()
+        cv2.imshow("rgb", rgb)
+        event = celex5.getEventPicBuffer()
+        cv2.imshow("event", event)
+        cv2.waitKey(1)
 
 
 def main():
+    print("{} * {} = {}".format(PyCeleX5.WIDTH, PyCeleX5.HEIGHT, PyCeleX5.RESOLUTION))
     celex5.openSensor(PyCeleX5.DeviceType.CeleX5_MIPI)
     celex5.isSensorReady()
+    celex5.getRotateType()
     celex5.getSensorFixedMode()
     celex5.getSensorLoopMode(1)
     celex5.getSensorLoopMode(2)
