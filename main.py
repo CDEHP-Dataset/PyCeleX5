@@ -41,6 +41,8 @@ def main():
     celex5.isEventCountSliceEnabled()
     celex5.isEventOpticalFlowEnabled()
 
+    celex5.setRotateType(2)
+
 
 main()
 showImg()

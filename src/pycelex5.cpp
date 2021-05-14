@@ -14,9 +14,10 @@ PyCeleX5::PyCeleX5(bool debug)
     this->m_pCeleX5 = new CeleX5();
     this->m_bDebug = debug;
     cout << "PyCeleX5.PyCeleX5(): " << (debug ? "in debug mode" : "") << endl;
-    cout << "PyCeleX5.PyCeleX5(): serial number " << this->m_pCeleX5->getSerialNumber() << endl;
-    cout << "PyCeleX5.PyCeleX5(): firmware version " << this->m_pCeleX5->getFirmwareVersion() << endl;
-    cout << "PyCeleX5.PyCeleX5(): firmware date " << this->m_pCeleX5->getFirmwareDate() << endl;
+    // SDK not yet implemented
+    // cout << "PyCeleX5.PyCeleX5(): serial number " << this->m_pCeleX5->getSerialNumber() << endl;
+    // cout << "PyCeleX5.PyCeleX5(): firmware version " << this->m_pCeleX5->getFirmwareVersion() << endl;
+    // cout << "PyCeleX5.PyCeleX5(): firmware date " << this->m_pCeleX5->getFirmwareDate() << endl;
 }
 
 PyCeleX5::~PyCeleX5()
@@ -25,6 +26,7 @@ PyCeleX5::~PyCeleX5()
     cout << "PyCeleX5.~PyCeleX5()" << endl;
 }
 
+// &0x1->上下，&0x2->左右
 void PyCeleX5::setRotateType(int type)
 {
     this->m_pCeleX5->setRotateType(type);
