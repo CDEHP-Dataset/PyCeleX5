@@ -2,10 +2,18 @@
 # coding=utf-8
 
 from build import PyCeleX5
+import cv2
+
+celex5 = PyCeleX5.PyCeleX5(debug=True)
+
+
+def showImg():
+    while True:
+        img = celex5.getFullPicBuffer()
+        cv2.imshow("fullpic", img)
 
 
 def main():
-    celex5 = PyCeleX5.PyCeleX5(debug=True)
     celex5.openSensor(PyCeleX5.DeviceType.CeleX5_MIPI)
     celex5.isSensorReady()
     celex5.getSensorFixedMode()
@@ -25,9 +33,9 @@ def main():
     celex5.isIMUModuleEnabled()
     celex5.isEventDenoisingEnabled()
     celex5.isFrameDenoisingEnabled()
-    celex5.isEventCountDensityEnabled()
+    celex5.isEventCountSliceEnabled()
     celex5.isEventOpticalFlowEnabled()
 
 
-
 main()
+showImg()
