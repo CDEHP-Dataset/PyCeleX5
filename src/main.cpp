@@ -13,6 +13,7 @@ PYBIND11_MODULE(PyCeleX5, m)
     m.attr("RESOLUTION") = PyCeleX5::sm_uiResolution;
 
     // py::class_<CeleX5> celex5(m, "CeleX5");
+    
     py::class_<CeleX5::BinFileAttributes>(m, "BinFileAttributes")
         .def(py::init<>())
         .def_readwrite("dataType", &CeleX5::BinFileAttributes::dataType)

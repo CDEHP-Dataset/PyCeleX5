@@ -88,6 +88,7 @@ public:
     // 2.3.29 getBrightness
     uint32_t getBrightness();
 
+    // API未实现
     // 2.3.30 setContrast
     // void setContrast(uint32_t value);
     // 2.3.31 getContrast
