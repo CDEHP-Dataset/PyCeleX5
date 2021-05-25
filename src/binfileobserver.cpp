@@ -1,18 +1,20 @@
 #include <opencv2/opencv.hpp>
 #include "binfileobserver.h"
 
-BinFileObserver::BinFileObserver(CX5SensorDataServer *pServer, CeleX5 *pCeleX5)
+BinFileObserver::BinFileObserver(CX5SensorDataServer *pServer, CeleX5 *pCeleX5, const std::string path)
 {
-    m_pServer = pServer;
-    m_pServer->registerData(this, CeleX5DataManager::CeleX_Frame_Data);
-    m_pCeleX5 = pCeleX5;
-    m_pImageBuffer = new uint8_t[1280 * 720];
+    this->m_pServer = pServer;
+    this->m_pServer->registerData(this, CeleX5DataManager::CeleX_Frame_Data);
+    this->m_pCeleX5 = pCeleX5;
+    this->m_pImageBuffer = new uint8_t[1280 * 800];
+    this->m_sPath = path;
+    this->m_iFileIndex = 0;
 }
 
 BinFileObserver::~BinFileObserver()
 {
-    m_pServer->unregisterData(this, CeleX5DataManager::CeleX_Frame_Data);
-    delete m_pImageBuffer;
+    this->m_pServer->unregisterData(this, CeleX5DataManager::CeleX_Frame_Data);
+    delete this->m_pImageBuffer;
 }
 
 void BinFileObserver::onFrameDataUpdated(CeleX5ProcessedData *pSensorData)
@@ -21,24 +23,19 @@ void BinFileObserver::onFrameDataUpdated(CeleX5ProcessedData *pSensorData)
         return;
     CeleX5::CeleX5Mode sensorMode = pSensorData->getSensorMode();
     if (CeleX5::Full_Picture_Mode == sensorMode)
-    {
-        m_pCeleX5->getFullPicBuffer(m_pImageBuffer);
-        cv::Mat matFullPic(800, 1280, CV_8UC1, m_pImageBuffer);
-        cv::imshow("FullPic", matFullPic);
-        cv::waitKey(1);
-    }
+        this->m_pCeleX5->getFullPicBuffer(m_pImageBuffer);
     else if (CeleX5::Event_Off_Pixel_Timestamp_Mode == sensorMode)
-    {
-        m_pCeleX5->getEventPicBuffer(m_pImageBuffer);
-        cv::Mat matEventPic(800, 1280, CV_8UC1, m_pImageBuffer);
-        cv::imshow("Event Binary Pic", matEventPic);
-        cv::waitKey(1);
-    }
+        this->m_pCeleX5->getEventPicBuffer(m_pImageBuffer);
     else if (CeleX5::Optical_Flow_Mode == sensorMode)
-    {
-        m_pCeleX5->getOpticalFlowPicBuffer(m_pImageBuffer);
-        cv::Mat matOpticalFlowPic(800, 1280, CV_8UC1, m_pImageBuffer);
-        cv::imshow("Optical-Flow Pic", matOpticalFlowPic);
-        cv::waitKey(1);
-    }
+        this->m_pCeleX5->getOpticalFlowPicBuffer(m_pImageBuffer);
+    else
+        return;
+    std::std::ostringstream ostream;
+    ostream << this->m_sPath
+            << std::setw(6) << std::setfill('0') << this->m_iFileIndex
+            << ".png";
+    this->m_iFileIndex++;
+    std::cout << ostream.str() << std::endl;
+    cv::Mat image(800, 1280, CV_8UC1, m_pImageBuffer);
+    cv::imwrite(ostream.str(), image);
 }

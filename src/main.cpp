@@ -1,13 +1,11 @@
 #include <pybind11/pybind11.h>
 #include "../include/celex5/celex5.h"
 #include "pycelex5.h"
-#include "binfileobserver.h"
 
 namespace py = pybind11;
 
 PYBIND11_MODULE(PyCeleX5, m)
 {
-
     m.doc() = "CelePixel CeleX5-MIPI C++ Wrapper for Python 3";
     m.attr("WIDTH") = PyCeleX5::sm_uiWidth;
     m.attr("HEIGHT") = PyCeleX5::sm_uiHeight;
