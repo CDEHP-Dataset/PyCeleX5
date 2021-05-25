@@ -5,6 +5,8 @@ from build import PyCeleX5
 import cv2
 import time
 
+BIN_FILE = "/home/event/Desktop/record_dataset_net/dataset/A0001P0001/S00/event/A0001_P0001_S00.bin"
+
 celex5 = PyCeleX5.PyCeleX5(debug=True)
 
 
@@ -18,12 +20,18 @@ def showImg():
 
 
 def readBinFile():
-    file = input()
-    observer = celex5.getBinFileObserver()
-    celex5.openBinFile(file)
+    # 必须先打开翻录模式
+    celex5.startRippingBinFile()
+    # 设置图片保存路径
+    celex5.setRippingPath("/tmp/test/")
+    # 然后打开BinFile
+    celex5.openBinFile(BIN_FILE)
+    # 循环读取到结束
     while not celex5.readBinFileData():
-        time.sleep(0.01)
-    del observer
+        pass
+    time.sleep(1)
+    # 用好后要结束
+    celex5.stopRippingBinFile()
 
 
 def main():
@@ -51,8 +59,10 @@ def main():
     celex5.isEventCountSliceEnabled()
     celex5.isEventOpticalFlowEnabled()
 
+    celex5.setEventFrameTime(8333)
     celex5.setRotateType(2)
 
 
 main()
 showImg()
+# readBinFile()

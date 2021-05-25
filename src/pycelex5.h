@@ -1,4 +1,3 @@
-#include <iostream>
 #include <string>
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
@@ -17,10 +16,16 @@ public:
     PyCeleX5(bool debug);
     ~PyCeleX5();
 
+    // &0x1->上下，&0x2->左右
     void setRotateType(int type);
     int getRotateType();
 
-    BinFileObserver *getBinFileObserver();
+    // 开始翻录Bin文件
+    void startRippingBinFile();
+    // 结束翻录Bin文件
+    void stopRippingBinFile();
+    // 设置翻录路径
+    void setRippingPath(const std::string &path);
 
     // 2.3.1 openSensor
     bool openSensor(CeleX5::DeviceType type);
@@ -178,6 +183,7 @@ public:
 
 private:
     CeleX5 *m_pCeleX5;
+    BinFileObserver *m_pBinFileObserver;
     bool m_bDebug;
 
     std::string printDeviceType(CeleX5::DeviceType type);

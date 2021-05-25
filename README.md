@@ -23,7 +23,10 @@ sudo python3 main.py
 
 ## 文档
 
-| 方法                           |         功能         |                     说明                     |
-| :----------------------------- | :------------------: | :------------------------------------------: |
-| `void setRotateType(int type)` |   设置图像翻转类型   | 若type&1==1则上下翻转，若type&2==2则左右翻转 |
-| `int getRotateType()`          | 获取当前图像翻转类型 |                                              |
+| 方法                                      |         功能         |                     说明                     |
+| :---------------------------------------- | :------------------: | :------------------------------------------: |
+| `void setRotateType(int type)`            |   设置图像翻转类型   | 若type&1==1则上下翻转，若type&2==2则左右翻转 |
+| `int getRotateType()`                     | 获取当前图像翻转类型 |                                              |
+| `void startRippingBinFile()`              |   开始翻录Bin文件    |                                              |
+| `void stopRippingBinFile()`               |   结束翻录Bin文件    |                                              |
+| `void setRippingPath(const string &path)` |     设置翻录路径     |                                              |

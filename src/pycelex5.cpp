@@ -1,3 +1,4 @@
+#include <iostream>
 #include "pycelex5.h"
 
 using std::cout;
@@ -12,6 +13,7 @@ uint32_t PyCeleX5::sm_uiResolution = PyCeleX5::sm_uiWidth * PyCeleX5::sm_uiHeigh
 PyCeleX5::PyCeleX5(bool debug)
 {
     this->m_pCeleX5 = new CeleX5();
+    this->m_pBinFileObserver = NULL;
     this->m_bDebug = debug;
     cout << "PyCeleX5.PyCeleX5(): " << (debug ? "in debug mode" : "") << endl;
     // SDK not yet implemented
@@ -22,11 +24,11 @@ PyCeleX5::PyCeleX5(bool debug)
 
 PyCeleX5::~PyCeleX5()
 {
+    this->stopRippingBinFile();
     delete this->m_pCeleX5;
     cout << "PyCeleX5.~PyCeleX5()" << endl;
 }
 
-// &0x1->上下，&0x2->左右
 void PyCeleX5::setRotateType(int type)
 {
     this->m_pCeleX5->setRotateType(type);
@@ -46,14 +48,41 @@ int PyCeleX5::getRotateType()
     return result;
 }
 
-BinFileObserver *PyCeleX5::getBinFileObserver()
+void PyCeleX5::startRippingBinFile()
 {
-    BinFileObserver *observer = new BinFileObserver(this->m_pCeleX5->getSensorDataServer(), this->m_pCeleX5);
+    if (this->m_pBinFileObserver)
+    {
+        cout << "PyCeleX5.startRippingBinFile(): already start ripping bin file" << endl;
+        return;
+    }
+    this->m_pBinFileObserver = new BinFileObserver(this->m_pCeleX5->getSensorDataServer(), this->m_pCeleX5);
     if (this->m_bDebug)
     {
-        cout << "PyCeleX5.getBinFileObserver(): called" << endl;
+        cout << "PyCeleX5.startRippingBinFile(): called" << endl;
     }
-    return observer;
+}
+
+void PyCeleX5::stopRippingBinFile()
+{
+    if (!this->m_pBinFileObserver)
+    {
+        cout << "PyCeleX5.stopRippingBinFile(): already stop ripping bin file" << endl;
+        return;
+    }
+    delete this->m_pBinFileObserver;
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.startRippingBinFile(): called" << endl;
+    }
+}
+
+void PyCeleX5::setRippingPath(const std::string &path)
+{
+    this->m_pBinFileObserver->setRippingPath(path);
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.setRippingPath(): " << path << endl;
+    }
 }
 
 bool PyCeleX5::openSensor(CeleX5::DeviceType type)

@@ -5,8 +5,9 @@
 class BinFileObserver : public CeleX5DataManager
 {
 public:
-    BinFileObserver(CX5SensorDataServer *pServer, CeleX5 *pCeleX5, const std::string path);
+    BinFileObserver(CX5SensorDataServer *pServer, CeleX5 *pCeleX5);
     ~BinFileObserver();
+    void setRippingPath(const std::string &path);
     virtual void onFrameDataUpdated(CeleX5ProcessedData *pSensorData);
 
 private:
