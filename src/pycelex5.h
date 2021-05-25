@@ -3,6 +3,7 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
 #include "../include/celex5/celex5.h"
+#include "binfileobserver.h"
 
 namespace py = pybind11;
 
@@ -18,6 +19,8 @@ public:
 
     void setRotateType(int type);
     int getRotateType();
+
+    BinFileObserver *getBinFileObserver();
 
     // 2.3.1 openSensor
     bool openSensor(CeleX5::DeviceType type);

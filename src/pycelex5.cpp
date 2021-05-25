@@ -46,6 +46,16 @@ int PyCeleX5::getRotateType()
     return result;
 }
 
+BinFileObserver *PyCeleX5::getBinFileObserver()
+{
+    BinFileObserver *observer = new BinFileObserver(this->m_pCeleX5->getSensorDataServer(), this->m_pCeleX5);
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.getBinFileObserver(): called" << endl;
+    }
+    return observer;
+}
+
 bool PyCeleX5::openSensor(CeleX5::DeviceType type)
 {
     bool result = m_pCeleX5->openSensor(type);

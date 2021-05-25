@@ -3,6 +3,7 @@
 
 from build import PyCeleX5
 import cv2
+import time
 
 celex5 = PyCeleX5.PyCeleX5(debug=True)
 
@@ -14,6 +15,15 @@ def showImg():
         event = celex5.getEventPicBuffer()
         cv2.imshow("event", event)
         cv2.waitKey(1)
+
+
+def readBinFile():
+    file = input()
+    observer = celex5.getBinFileObserver()
+    celex5.openBinFile(file)
+    while not celex5.readBinFileData():
+        time.sleep(0.01)
+    del observer
 
 
 def main():

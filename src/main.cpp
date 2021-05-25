@@ -1,6 +1,7 @@
 #include <pybind11/pybind11.h>
 #include "../include/celex5/celex5.h"
 #include "pycelex5.h"
+#include "binfileobserver.h"
 
 namespace py = pybind11;
 
@@ -12,8 +13,8 @@ PYBIND11_MODULE(PyCeleX5, m)
     m.attr("HEIGHT") = PyCeleX5::sm_uiHeight;
     m.attr("RESOLUTION") = PyCeleX5::sm_uiResolution;
 
-    // py::class_<CeleX5> celex5(m, "CeleX5");
-    
+    py::class_<BinFileObserver> binFileObserver(m, "BinFileObserver");
+
     py::class_<CeleX5::BinFileAttributes>(m, "BinFileAttributes")
         .def(py::init<>())
         .def_readwrite("dataType", &CeleX5::BinFileAttributes::dataType)
@@ -65,6 +66,7 @@ PYBIND11_MODULE(PyCeleX5, m)
         .def(py::init<bool>(), py::arg("debug") = true)
         .def("setRotateType", &PyCeleX5::setRotateType, "void setRotateType(int type)", py::arg("type"))
         .def("getRotateType", &PyCeleX5::getRotateType, "int getRotateType()")
+        .def("getBinFileObserver", &PyCeleX5::getBinFileObserver, "BinFileObserver *getBinFileObserver()")
         .def("openSensor", &PyCeleX5::openSensor, "bool openSensor(DeviceType type)", py::arg("type") = CeleX5::DeviceType::CeleX5_MIPI)
         .def("isSensorReady", &PyCeleX5::isSensorReady, "bool isSensorReady()")
         .def("setFpnFile", &PyCeleX5::setFpnFile, "bool setFpnFile(string fpnFile)", py::arg("fpnFile"))
