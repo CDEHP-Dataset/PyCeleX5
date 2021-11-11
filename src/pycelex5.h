@@ -54,7 +54,7 @@ public:
     // 2.3.11 getEventPicMat
 
     // 2.3.12 getEventDataVector
-    py::array_t<EventData> getEventDataVector();
+    py::list getEventDataVector();
 
     // 2.3.13 getOpticalFlowPicBuffer
     py::array_t<uint8_t> getOpticalFlowPicBuffer(CeleX5::OpticalFlowPicType type);
