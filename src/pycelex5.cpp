@@ -177,10 +177,11 @@ py::list PyCeleX5::getEventDataVector()
     if (this->m_bDebug)
     {
         cout << "PyCeleX5.getEventDataVector(): " << (status ? "successful" : "failed") << endl;
+        cout << "PyCeleX5.getEventDataVector(): event count " << vecEvent.size() << endl;
     }
     py::list result = py::cast(vecEvent);
     vecEvent.clear();
-    delete &vecEvent;
+    // delete &vecEvent;
     return result;
 }
 

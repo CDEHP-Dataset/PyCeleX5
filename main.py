@@ -5,7 +5,7 @@ from build import PyCeleX5
 import cv2
 import time
 
-BIN_FILE = "/home/event/Desktop/record_dataset_net/dataset/A0001P0001/S00/event/A0001_P0001_S00.bin"
+BIN_FILE = "/home/event/Desktop/A0001_P0001_S00.bin"
 
 celex5 = PyCeleX5.PyCeleX5(debug=True)
 
@@ -32,6 +32,16 @@ def readBinFile():
     time.sleep(1)
     # 用好后要结束
     celex5.stopRippingBinFile()
+
+
+def binToCsv():
+    celex5.openBinFile(BIN_FILE)
+    data = celex5.getEventDataVector()
+    print(len(data))
+    # # 循环读取到结束
+    # while not celex5.readBinFileData():
+    #     pass
+    # time.sleep(1)
 
 
 def main():
@@ -64,5 +74,6 @@ def main():
 
 
 main()
-showImg()
+# showImg()
 # readBinFile()
+binToCsv()
