@@ -1,5 +1,6 @@
 #include <pybind11/pybind11.h>
 #include "../include/celex5/celex5.h"
+#include "../include/celextypes.h"
 #include "pycelex5.h"
 
 namespace py = pybind11;
@@ -13,24 +14,6 @@ PYBIND11_MODULE(PyCeleX5, m)
 
     py::class_<BinFileObserver> binFileObserver(m, "BinFileObserver");
 
-    py::class_<CeleX5::BinFileAttributes>(m, "BinFileAttributes")
-        .def(py::init<>())
-        .def_readwrite("dataType", &CeleX5::BinFileAttributes::dataType)
-        .def_readwrite("loopAMode", &CeleX5::BinFileAttributes::loopAMode)
-        .def_readwrite("loopBMode", &CeleX5::BinFileAttributes::loopBMode)
-        .def_readwrite("loopCMode", &CeleX5::BinFileAttributes::loopCMode)
-        .def_readwrite("eventDataFormat", &CeleX5::BinFileAttributes::eventDataFormat)
-        .def_readwrite("hour", &CeleX5::BinFileAttributes::hour)
-        .def_readwrite("minute", &CeleX5::BinFileAttributes::minute)
-        .def_readwrite("second", &CeleX5::BinFileAttributes::second)
-        .def_readwrite("packageCount", &CeleX5::BinFileAttributes::packageCount);
-
-    py::enum_<CeleX5::DeviceType>(m, "DeviceType")
-        .value("Unknown_Devive", CeleX5::DeviceType::Unknown_Devive)
-        .value("CeleX5_MIPI", CeleX5::DeviceType::CeleX5_MIPI)
-        .value("CeleX5_OpalKelly", CeleX5::DeviceType::CeleX5_OpalKelly)
-        .export_values();
-
     py::enum_<CeleX5::CeleX5Mode>(m, "CeleX5Mode")
         .value("Unknown_Mode", CeleX5::CeleX5Mode::Unknown_Mode)
         .value("Event_Off_Pixel_Timestamp_Mode", CeleX5::CeleX5Mode::Event_Off_Pixel_Timestamp_Mode)
@@ -40,6 +23,12 @@ PYBIND11_MODULE(PyCeleX5, m)
         .value("Optical_Flow_Mode", CeleX5::CeleX5Mode::Optical_Flow_Mode)
         .value("Optical_Flow_FPN_Mode", CeleX5::CeleX5Mode::Optical_Flow_FPN_Mode)
         .value("Multi_Read_Optical_Flow_Mode", CeleX5::CeleX5Mode::Multi_Read_Optical_Flow_Mode)
+        .export_values();
+
+    py::enum_<CeleX5::DeviceType>(m, "DeviceType")
+        .value("Unknown_Devive", CeleX5::DeviceType::Unknown_Devive)
+        .value("CeleX5_MIPI", CeleX5::DeviceType::CeleX5_MIPI)
+        .value("CeleX5_OpalKelly", CeleX5::DeviceType::CeleX5_OpalKelly)
         .export_values();
 
     py::enum_<CeleX5::EventPicType>(m, "EventPicType")
@@ -59,6 +48,42 @@ PYBIND11_MODULE(PyCeleX5, m)
         .value("OpticalFlowSpeedPic", CeleX5::OpticalFlowPicType::OpticalFlowSpeedPic)
         .value("OpticalFlowDirectionPic", CeleX5::OpticalFlowPicType::OpticalFlowDirectionPic)
         .export_values();
+
+    py::class_<CeleX5::BinFileAttributes>(m, "BinFileAttributes")
+        .def(py::init<>())
+        .def_readwrite("dataType", &CeleX5::BinFileAttributes::dataType)
+        .def_readwrite("loopAMode", &CeleX5::BinFileAttributes::loopAMode)
+        .def_readwrite("loopBMode", &CeleX5::BinFileAttributes::loopBMode)
+        .def_readwrite("loopCMode", &CeleX5::BinFileAttributes::loopCMode)
+        .def_readwrite("eventDataFormat", &CeleX5::BinFileAttributes::eventDataFormat)
+        .def_readwrite("hour", &CeleX5::BinFileAttributes::hour)
+        .def_readwrite("minute", &CeleX5::BinFileAttributes::minute)
+        .def_readwrite("second", &CeleX5::BinFileAttributes::second)
+        .def_readwrite("packageCount", &CeleX5::BinFileAttributes::packageCount);
+
+    py::class_<EventData>(m, "EventData")
+        .def(py::init<>())
+        .def_readwrite("col", &EventData::col)
+        .def_readwrite("row", &EventData::row)
+        .def_readwrite("adc", &EventData::adc)
+        .def_readwrite("polarity", &EventData::polarity)
+        .def_readwrite("tInPixelIncreasing", &EventData::tInPixelIncreasing)
+        .def_readwrite("tOffPixelIncreasing", &EventData::tOffPixelIncreasing);
+
+    py::class_<IMUData>(m, "IMUData")
+        .def(py::init<>())
+        .def_readwrite("xGYROS", &IMUData::xGYROS)
+        .def_readwrite("yGYROS", &IMUData::yGYROS)
+        .def_readwrite("zGYROS", &IMUData::zGYROS)
+        .def_readwrite("xACC", &IMUData::xACC)
+        .def_readwrite("yACC", &IMUData::yACC)
+        .def_readwrite("zACC", &IMUData::zACC)
+        .def_readwrite("xMAG", &IMUData::xMAG)
+        .def_readwrite("yMAG", &IMUData::yMAG)
+        .def_readwrite("zMAG", &IMUData::zMAG)
+        .def_readwrite("xTEMP", &IMUData::xTEMP)
+        .def_readwrite("frameNo", &IMUData::frameNo)
+        .def_readwrite("timestamp", &IMUData::timestamp);
 
     py::class_<PyCeleX5>(m, "PyCeleX5")
         .def(py::init<bool>(), py::arg("debug") = true)

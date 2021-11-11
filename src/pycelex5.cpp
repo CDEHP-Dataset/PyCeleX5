@@ -1,8 +1,10 @@
 #include <iostream>
+#include <vector>
 #include "pycelex5.h"
 
 using std::cout;
 using std::endl;
+using std::vector;
 
 namespace py = pybind11;
 
@@ -160,6 +162,23 @@ py::array_t<uint8_t> PyCeleX5::getEventPicBuffer(CeleX5::EventPicType type)
     this->m_pCeleX5->getEventPicBuffer(pBuffer1, type);
     py::array_t<uint8_t> result = py::array_t<uint8_t>({PyCeleX5::sm_uiHeight, PyCeleX5::sm_uiWidth}, pBuffer1);
     delete pBuffer1;
+    return result;
+}
+
+py::array_t<EventData> getEventDataVector()
+{
+    vector<EventData> vecEvent;
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.getEventDataVector(): called" << endl;
+    }
+    bool status = this->m_pCeleX5->getEventDataVector(vecEvent);
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.getEventDataVector(): " << (status ? "successful" : "failed") << endl;
+    }
+    py::array_t<EventData> result = py::array_t<EventData>(vecEvent.size(), vecEvent);
+    delete vecEvent;
     return result;
 }
 

@@ -2,6 +2,7 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
 #include "../include/celex5/celex5.h"
+#include "../include/celextypes.h"
 #include "binfileobserver.h"
 
 namespace py = pybind11;
@@ -53,6 +54,7 @@ public:
     // 2.3.11 getEventPicMat
 
     // 2.3.12 getEventDataVector
+    py::array_t<EventData> getEventDataVector();
 
     // 2.3.13 getOpticalFlowPicBuffer
     py::array_t<uint8_t> getOpticalFlowPicBuffer(CeleX5::OpticalFlowPicType type);
