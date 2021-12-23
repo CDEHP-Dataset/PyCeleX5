@@ -478,7 +478,10 @@ bool PyCeleX5::readBinFileData()
     bool result = this->m_pCeleX5->readBinFileData();
     if (this->m_bDebug)
     {
-        cout << "PyCeleX5.readBinFileData(): file has " << (result ? "no " : "") << "more data" << endl;
+        if (result)
+            cout << "PyCeleX5.readBinFileData(): file has no more data" << endl;
+        else
+            cout << '.';
     }
     return result;
 }
