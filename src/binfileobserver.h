@@ -27,5 +27,5 @@ private:
     std::string m_sEventDataPath;
     std::ofstream m_ofsEventDataStream;
 
-    void writeCsvData(Celex5::CeleX5Mode sensorMode);
+    void writeCsvData(CeleX5::CeleX5Mode sensorMode);
 };

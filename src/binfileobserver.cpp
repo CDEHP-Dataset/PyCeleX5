@@ -50,9 +50,9 @@ void BinFileObserver::onFrameDataUpdated(CeleX5ProcessedData *pSensorData)
         this->m_pCeleX5->getOpticalFlowPicBuffer(m_pImageBuffer);
     else
         return;
-    std::ostringstream ostream;
     if (this->m_bImageFileOutput)
     {
+        std::ostringstream ostream;
         ostream << this->m_sImageFilePath
                 << std::setw(6) << std::setfill('0') << this->m_iFileIndex
                 << ".png";

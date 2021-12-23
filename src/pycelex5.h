@@ -189,6 +189,7 @@ private:
     CeleX5 *m_pCeleX5;
     BinFileObserver *m_pBinFileObserver;
     bool m_bDebug;
+    bool m_bFileOpend;
 
     std::string printDeviceType(CeleX5::DeviceType type);
     std::string printCeleX5Mode(CeleX5::CeleX5Mode mode);

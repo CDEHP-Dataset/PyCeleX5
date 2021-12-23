@@ -18,6 +18,7 @@ PyCeleX5::PyCeleX5(bool debug)
     this->m_pCeleX5 = new CeleX5();
     this->m_pBinFileObserver = NULL;
     this->m_bDebug = debug;
+    this->m_bFileOpend = false;
     cout << "PyCeleX5.PyCeleX5(): " << (debug ? "in debug mode" : "") << endl;
     // SDK not yet implemented
     // cout << "PyCeleX5.PyCeleX5(): serial number " << this->m_pCeleX5->getSerialNumber() << endl;
@@ -82,6 +83,11 @@ void PyCeleX5::stopRippingBinFile()
 
 void PyCeleX5::enableImageFileOutput(const std::string &directoryPath)
 {
+    if (!this->m_pBinFileObserver)
+    {
+        cout << "PyCeleX5.enableImageFileOutput(): ripping bin file not start" << endl;
+        return;
+    }
     this->m_pBinFileObserver->enableImageFileOutput(directoryPath);
     if (this->m_bDebug)
     {
@@ -91,6 +97,11 @@ void PyCeleX5::enableImageFileOutput(const std::string &directoryPath)
 
 void PyCeleX5::enableEventDataOutput(const std::string &filePath)
 {
+    if (!this->m_pBinFileObserver)
+    {
+        cout << "PyCeleX5.stopRippingBinFile(): ripping bin file not start" << endl;
+        return;
+    }
     this->m_pBinFileObserver->enableEventDataOutput(filePath);
     if (this->m_bDebug)
     {
@@ -433,16 +444,22 @@ void PyCeleX5::stopRecording()
 bool PyCeleX5::openBinFile(std::string &filePath)
 {
     bool result = this->m_pCeleX5->openBinFile(filePath);
+    this->m_bFileOpend = result;
     if (this->m_bDebug)
     {
         cout << "PyCeleX5.openBinFile(): " << filePath << endl;
-        cout << "PyCeleX5.openBinFile(): open file " << ((result ? "successful" : "failed")) << endl;
+        cout << "PyCeleX5.openBinFile(): open file " << (result ? "successful" : "failed") << endl;
     }
     return result;
 }
 
 bool PyCeleX5::readBinFileData()
 {
+    if (!this->m_bFileOpend)
+    {
+        cout << "PyCeleX5.readBinFileData(): file not opend" << endl;
+        return true;
+    }
     bool result = this->m_pCeleX5->readBinFileData();
     if (this->m_bDebug)
     {
