@@ -40,6 +40,7 @@ void BinFileObserver::enableEventDataOutput(const std::string &filePath)
 {
     this->m_bEventDataOutput = true;
     this->m_sEventDataPath = filePath;
+    this->m_ofsEventDataStream.clear();
     this->m_ofsEventDataStream.open(filePath, std::ios::out | std::ios::trunc);
 }
 

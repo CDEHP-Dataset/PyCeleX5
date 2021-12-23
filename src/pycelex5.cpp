@@ -114,7 +114,7 @@ void PyCeleX5::enableEventDataOutput(const std::string &filePath)
 {
     if (!this->m_pBinFileObserver)
     {
-        cout << "PyCeleX5.stopRippingBinFile(): ripping bin file not start" << endl;
+        cout << "PyCeleX5.enableEventDataOutput(): ripping bin file not start" << endl;
         return;
     }
     this->m_pBinFileObserver->enableEventDataOutput(filePath);
@@ -205,10 +205,6 @@ py::array_t<uint8_t> PyCeleX5::getEventPicBuffer(CeleX5::EventPicType type)
 py::list PyCeleX5::getEventDataVector()
 {
     vector<EventData> vecEvent;
-    if (this->m_bDebug)
-    {
-        cout << "PyCeleX5.getEventDataVector(): called" << endl;
-    }
     bool status = this->m_pCeleX5->getEventDataVector(vecEvent);
     if (this->m_bDebug)
     {
@@ -480,8 +476,8 @@ bool PyCeleX5::readBinFileData()
     {
         if (result)
             cout << "PyCeleX5.readBinFileData(): file has no more data" << endl;
-        else
-            cout << '.';
+        // else
+        //     cout << '.';
     }
     return result;
 }
@@ -581,10 +577,10 @@ void PyCeleX5::enableIMUModule()
 
 bool PyCeleX5::isIMUModuleEnabled()
 {
-    bool result = this->m_pCeleX5->isEventStreamEnabled();
+    bool result = this->m_pCeleX5->isIMUModuleEnabled();
     if (this->m_bDebug)
     {
-        cout << "PyCeleX5.isEventStreamEnabled(): " << (result ? "enabled" : "disabled") << endl;
+        cout << "PyCeleX5.isIMUModuleEnabled(): " << (result ? "enabled" : "disabled") << endl;
     }
     return result;
 }
