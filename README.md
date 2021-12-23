@@ -23,10 +23,11 @@ sudo python3 main.py
 
 ## 文档
 
-| 方法                                      |         功能         |                     说明                     |
-| :---------------------------------------- | :------------------: | :------------------------------------------: |
-| `void setRotateType(int type)`            |   设置图像翻转类型   | 若type&1==1则上下翻转，若type&2==2则左右翻转 |
-| `int getRotateType()`                     | 获取当前图像翻转类型 |                                              |
-| `void startRippingBinFile()`              |   开始翻录Bin文件    |                                              |
-| `void stopRippingBinFile()`               |   结束翻录Bin文件    |                                              |
-| `void setRippingPath(const string &path)` |     设置翻录路径     |                                              |
+| 方法                                                |         功能         |                     说明                     |
+| :-------------------------------------------------- | :------------------: | :------------------------------------------: |
+| `void setRotateType(int type)`                      |   设置图像翻转类型   | 若type&1==1则上下翻转，若type&2==2则左右翻转 |
+| `int getRotateType()`                               | 获取当前图像翻转类型 |                                              |
+| `void startRippingBinFile()`                        |   开始翻录Bin文件    |                                              |
+| `void stopRippingBinFile()`                         |   结束翻录Bin文件    |                                              |
+| `void enableImageFileOutput(string &directoryPath)` | 启用翻录图片文件功能 |         应传入一个用于存放图片的目录         |
+| `void enableEventDataOutput(string &filePath)`      | 启用翻录事件csv功能  |       应传入一个用于保存事件数据的文件       |

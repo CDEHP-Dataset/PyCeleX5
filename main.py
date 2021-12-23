@@ -23,7 +23,9 @@ def readBinFile():
     # 必须先打开翻录模式
     celex5.startRippingBinFile()
     # 设置图片保存路径
-    celex5.setRippingPath("/tmp/test/")
+    celex5.enableImageFileOutput("/tmp/test/images/")
+    # 设置Event数据保存路径
+    celex5.enableEventDataOutput("/tmp/test/event.csv")
     # 然后打开BinFile
     celex5.openBinFile(BIN_FILE)
     # 循环读取到结束
@@ -32,16 +34,6 @@ def readBinFile():
     time.sleep(1)
     # 用好后要结束
     celex5.stopRippingBinFile()
-
-
-def binToCsv():
-    celex5.openBinFile(BIN_FILE)
-    data = celex5.getEventDataVector()
-    print(len(data))
-    # # 循环读取到结束
-    # while not celex5.readBinFileData():
-    #     pass
-    # time.sleep(1)
 
 
 def main():
@@ -75,5 +67,4 @@ def main():
 
 main()
 # showImg()
-# readBinFile()
-binToCsv()
+readBinFile()

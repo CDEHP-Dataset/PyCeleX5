@@ -25,8 +25,10 @@ public:
     void startRippingBinFile();
     // 结束翻录Bin文件
     void stopRippingBinFile();
-    // 设置翻录路径
-    void setRippingPath(const std::string &path);
+    // 启用翻录时保存图片文件(存放图片的目录)
+    void enableImageFileOutput(const std::string &directoryPath);
+    // 启用翻录时保存RAW事件数据(存放数据的文件)
+    void enableEventDataOutput(const std::string &filePath);
 
     // 2.3.1 openSensor
     bool openSensor(CeleX5::DeviceType type);

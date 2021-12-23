@@ -1,6 +1,8 @@
 #include <iomanip>
 #include <sstream>
+#include <vector>
 #include <opencv2/opencv.hpp>
+#include "../include/celextypes.h"
 #include "binfileobserver.h"
 
 BinFileObserver::BinFileObserver(CX5SensorDataServer *pServer, CeleX5 *pCeleX5)
@@ -9,6 +11,11 @@ BinFileObserver::BinFileObserver(CX5SensorDataServer *pServer, CeleX5 *pCeleX5)
     this->m_pServer->registerData(this, CeleX5DataManager::CeleX_Frame_Data);
     this->m_pCeleX5 = pCeleX5;
     this->m_pImageBuffer = new uint8_t[1280 * 800];
+
+    this->m_iFileIndex = 0;
+
+    this->m_bImageFileOutput = false;
+    this->m_bEventDataOutput = false;
 }
 
 BinFileObserver::~BinFileObserver()
@@ -17,10 +24,17 @@ BinFileObserver::~BinFileObserver()
     delete this->m_pImageBuffer;
 }
 
-void BinFileObserver::setRippingPath(const std::string &path)
+void BinFileObserver::enableImageFileOutput(const std::string &directoryPath)
 {
-    this->m_sPath = path;
-    this->m_iFileIndex = 0;
+    this->m_bImageFileOutput = true;
+    this->m_sImageFilePath = directoryPath;
+}
+
+void BinFileObserver::enableEventDataOutput(const std::string &filePath)
+{
+    this->m_bEventDataOutput = true;
+    this->m_sEventDataPath = filePath;
+    this->m_ofsEventDataStream.open(filePath, std::ios::out | std::ios::trunc);
 }
 
 void BinFileObserver::onFrameDataUpdated(CeleX5ProcessedData *pSensorData)
@@ -37,10 +51,67 @@ void BinFileObserver::onFrameDataUpdated(CeleX5ProcessedData *pSensorData)
     else
         return;
     std::ostringstream ostream;
-    ostream << this->m_sPath
-            << std::setw(6) << std::setfill('0') << this->m_iFileIndex
-            << ".png";
+    if (this->m_bImageFileOutput)
+    {
+        ostream << this->m_sImageFilePath
+                << std::setw(6) << std::setfill('0') << this->m_iFileIndex
+                << ".png";
+        cv::Mat image(800, 1280, CV_8UC1, m_pImageBuffer);
+        cv::imwrite(ostream.str(), image);
+    }
+    if (this->m_bEventDataOutput)
+    {
+        writeCsvData(pSensorData->getSensorMode());
+    }
     this->m_iFileIndex++;
-    cv::Mat image(800, 1280, CV_8UC1, m_pImageBuffer);
-    cv::imwrite(ostream.str(), image);
+}
+
+void BinFileObserver::close()
+{
+    if (this->m_bEventDataOutput && this->m_ofsEventDataStream)
+        this->m_ofsEventDataStream.close();
+}
+
+void BinFileObserver::writeCsvData(CeleX5::CeleX5Mode sensorMode)
+{
+    std::vector<EventData> data;
+    uint32_t frameNumber = 0;
+    this->m_pCeleX5->getEventDataVector(data, frameNumber);
+    size_t length = data.size();
+    if (length == 0)
+        return;
+
+    if (sensorMode == CeleX5::Event_Off_Pixel_Timestamp_Mode)
+    {
+        for (int i = 0; i < length; i++)
+        {
+            m_ofsEventDataStream << data[i].row << ','
+                                 << data[i].col << ','
+                                 << data[i].tOffPixelIncreasing
+                                 << std::endl;
+        }
+    }
+    else if (sensorMode == CeleX5::Event_Intensity_Mode)
+    {
+        for (int i = 0; i < length; i++)
+        {
+            m_ofsEventDataStream << data[i].row << ','
+                                 << data[i].col << ','
+                                 << data[i].adc << ','
+                                 << data[i].polarity << ','
+                                 << data[i].tOffPixelIncreasing
+                                 << std::endl;
+        }
+    }
+    else if (sensorMode == CeleX5::Event_In_Pixel_Timestamp_Mode)
+    {
+        for (int i = 0; i < length; i++)
+        {
+            m_ofsEventDataStream << data[i].row << ','
+                                 << data[i].col << ','
+                                 << data[i].tInPixelIncreasing << ','
+                                 << data[i].tOffPixelIncreasing
+                                 << std::endl;
+        }
+    }
 }

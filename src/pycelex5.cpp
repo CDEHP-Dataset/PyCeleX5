@@ -72,6 +72,7 @@ void PyCeleX5::stopRippingBinFile()
         cout << "PyCeleX5.stopRippingBinFile(): already stop ripping bin file" << endl;
         return;
     }
+    this->m_pBinFileObserver->close();
     delete this->m_pBinFileObserver;
     if (this->m_bDebug)
     {
@@ -79,12 +80,21 @@ void PyCeleX5::stopRippingBinFile()
     }
 }
 
-void PyCeleX5::setRippingPath(const std::string &path)
+void PyCeleX5::enableImageFileOutput(const std::string &directoryPath)
 {
-    this->m_pBinFileObserver->setRippingPath(path);
+    this->m_pBinFileObserver->enableImageFileOutput(directoryPath);
     if (this->m_bDebug)
     {
-        cout << "PyCeleX5.setRippingPath(): " << path << endl;
+        cout << "PyCeleX5.enableImageFileOutput(): " << directoryPath << endl;
+    }
+}
+
+void PyCeleX5::enableEventDataOutput(const std::string &filePath)
+{
+    this->m_pBinFileObserver->enableEventDataOutput(filePath);
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.enableEventDataOutput(): " << filePath << endl;
     }
 }
 
