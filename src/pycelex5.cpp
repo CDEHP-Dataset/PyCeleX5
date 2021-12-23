@@ -77,7 +77,7 @@ void PyCeleX5::stopRippingBinFile()
     delete this->m_pBinFileObserver;
     if (this->m_bDebug)
     {
-        cout << "PyCeleX5.startRippingBinFile(): called" << endl;
+        cout << "PyCeleX5.stopRippingBinFile(): called" << endl;
     }
 }
 

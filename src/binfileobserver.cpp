@@ -68,7 +68,7 @@ void BinFileObserver::onFrameDataUpdated(CeleX5ProcessedData *pSensorData)
 
 void BinFileObserver::close()
 {
-    if (this->m_bEventDataOutput && this->m_ofsEventDataStream)
+    if (this->m_bEventDataOutput && this->m_ofsEventDataStream.is_open())
         this->m_ofsEventDataStream.close();
 }
 
