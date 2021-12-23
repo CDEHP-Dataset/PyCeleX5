@@ -11,6 +11,7 @@ public:
     void enableImageFileOutput(const std::string &directoryPath);
     void enableEventDataOutput(const std::string &filePath);
     virtual void onFrameDataUpdated(CeleX5ProcessedData *pSensorData);
+    bool finished();
     void close();
 
 private:
@@ -19,6 +20,7 @@ private:
 
     uint8_t *m_pImageBuffer;
     uint32_t m_iFileIndex;
+    bool m_bFinished;
 
     bool m_bImageFileOutput;
     std::string m_sImageFilePath;

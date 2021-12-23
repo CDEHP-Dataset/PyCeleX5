@@ -81,6 +81,21 @@ void PyCeleX5::stopRippingBinFile()
     }
 }
 
+bool PyCeleX5::rippingBiFileFinished()
+{
+    if (!this->m_pBinFileObserver)
+    {
+        cout << "PyCeleX5.rippingBiFileFinished(): ripping bin file not start" << endl;
+        return true;
+    }
+    bool result = this->m_pBinFileObserver->finished();
+    if (this->m_bDebug)
+    {
+        cout << "PyCeleX5.rippingBiFileFinished(): " << (result ? "" : "not ") << "finished" << endl;
+    }
+    return result;
+}
+
 void PyCeleX5::enableImageFileOutput(const std::string &directoryPath)
 {
     if (!this->m_pBinFileObserver)

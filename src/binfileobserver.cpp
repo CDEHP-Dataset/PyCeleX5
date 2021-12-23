@@ -5,6 +5,12 @@
 #include "../include/celextypes.h"
 #include "binfileobserver.h"
 
+#ifdef _WIN32
+#include <windows.h>
+#else
+#include <unistd.h>
+#endif
+
 BinFileObserver::BinFileObserver(CX5SensorDataServer *pServer, CeleX5 *pCeleX5)
 {
     this->m_pServer = pServer;
@@ -64,6 +70,18 @@ void BinFileObserver::onFrameDataUpdated(CeleX5ProcessedData *pSensorData)
         writeCsvData(pSensorData->getSensorMode());
     }
     this->m_iFileIndex++;
+    this->m_bFinished = false;
+}
+
+bool BinFileObserver::finished()
+{
+    this->m_bFinished = true;
+#ifdef _WIN32
+    Sleep(0.5);
+#else
+    usleep(500);
+#endif
+    return this->m_bFinished;
 }
 
 void BinFileObserver::close()

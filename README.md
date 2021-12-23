@@ -31,3 +31,4 @@ sudo python3 main.py
 | `void stopRippingBinFile()`                         |   结束翻录Bin文件    |                                              |
 | `void enableImageFileOutput(string &directoryPath)` | 启用翻录图片文件功能 |         应传入一个用于存放图片的目录         |
 | `void enableEventDataOutput(string &filePath)`      | 启用翻录事件csv功能  |       应传入一个用于保存事件数据的文件       |
+| `bool rippingBiFileFinished()`                      |   判断翻录是否完成   |                                              |
