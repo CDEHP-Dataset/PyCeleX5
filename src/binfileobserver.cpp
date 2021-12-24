@@ -68,7 +68,8 @@ void BinFileObserver::onFrameDataUpdated(CeleX5ProcessedData *pSensorData)
     }
     if (this->m_bEventDataOutput)
     {
-        writeCsvData(pSensorData->getSensorMode());
+        this->m_cmSensorMode = pSensorData->getSensorMode();
+        this->writeCsvData(this->m_cmSensorMode);
     }
     this->m_iFileIndex++;
     this->m_bFinished = false;
@@ -88,7 +89,10 @@ bool BinFileObserver::finished()
 void BinFileObserver::close()
 {
     if (this->m_bEventDataOutput && this->m_ofsEventDataStream.is_open())
+    {
+        this->writeCsvData(this->m_cmSensorMode);
         this->m_ofsEventDataStream.close();
+    }
 }
 
 void BinFileObserver::writeCsvData(CeleX5::CeleX5Mode sensorMode)
