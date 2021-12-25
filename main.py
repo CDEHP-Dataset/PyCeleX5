@@ -29,7 +29,7 @@ def readBinFile():
     # 然后打开BinFile
     celex5.openBinFile(BIN_FILE)
     # 循环读取到结束
-    while not celex5.readBinFileData() or not celex5.rippingBiFileFinished():
+    while not celex5.readBinFileData() or not celex5.rippingBinFileFinished():
         pass
     time.sleep(1)
     # 用好后要结束

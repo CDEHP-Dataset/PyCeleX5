@@ -81,17 +81,17 @@ void PyCeleX5::stopRippingBinFile()
     }
 }
 
-bool PyCeleX5::rippingBiFileFinished()
+bool PyCeleX5::rippingBinFileFinished()
 {
     if (!this->m_pBinFileObserver)
     {
-        cout << "PyCeleX5.rippingBiFileFinished(): ripping bin file not start" << endl;
+        cout << "PyCeleX5.rippingBinFileFinished(): ripping bin file not start" << endl;
         return true;
     }
     bool result = this->m_pBinFileObserver->finished();
     if (this->m_bDebug)
     {
-        cout << "PyCeleX5.rippingBiFileFinished(): " << (result ? "" : "not ") << "finished" << endl;
+        cout << "PyCeleX5.rippingBinFileFinished(): " << (result ? "" : "not ") << "finished" << endl;
     }
     return result;
 }
