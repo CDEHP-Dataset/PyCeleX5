@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# coding=utf-8
+# -*- coding: utf-8 -*-
 
 from build import PyCeleX5
 import cv2
@@ -66,5 +66,5 @@ def main():
 
 
 main()
-# showImg()
-readBinFile()
+showImg()
+# readBinFile()
