@@ -1,14 +1,14 @@
 # PyCeleX5
 
-CelePixel [CeleX5-MIPI](https://github.com/CelePixel/CeleX5-MIPI) C++ API Wrapper for Python 3
-[English] (https://github.com/CDEHP-Dataset/PyCeleX5/blob/main/README.md) [简体中文](https://github.com/CDEHP-Dataset/PyCeleX5/blob/main/README_zh-Hans.md)
+CelePixel [CeleX5-MIPI](https://github.com/CelePixel/CeleX5-MIPI) C++ API Wrapper for Python 3  
+[English](https://github.com/CDEHP-Dataset/PyCeleX5/blob/main/README.md) [简体中文](https://github.com/CDEHP-Dataset/PyCeleX5/blob/main/README_zh-Hans.md)
 
 ## Environment
 
 * Compile or install precompiled `OpenCV 3.3.0`
 * Install all dependencies used by `libCeleX.so`, use `ldd lib/libCeleX.so` or [Dependencies](https://github.com/lucasg/Dependencies) in Windows
 
-## 编译
+## Compile
 
 ### Linux
 
@@ -54,7 +54,7 @@ sudo python3 demo.py
 
 ## Added interfaces other than the official API
 
-| 方法                                                |                   功能                    |                                 说明                                  |
+| Method                                              |                  Feature                  |                              Description                              |
 | :-------------------------------------------------- | :---------------------------------------: | :-------------------------------------------------------------------: |
 | `void setRotateType(int type)`                      |              Set rotate type              | `type&1==1` --> Flip up and down, `type&2==2` --> Flip left and right |
 | `int getRotateType()`                               |              Get rotate type              |                                                                       |

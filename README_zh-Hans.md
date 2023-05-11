@@ -1,6 +1,6 @@
 # PyCeleX5
 
-使用Python调用CelePixel [CeleX5-MIPI](https://github.com/CelePixel/CeleX5-MIPI)的官方 C++ API
+使用Python调用CelePixel [CeleX5-MIPI](https://github.com/CelePixel/CeleX5-MIPI)的官方 C++ API  
 [English](https://github.com/CDEHP-Dataset/PyCeleX5/blob/main/README.md) [简体中文](https://github.com/CDEHP-Dataset/PyCeleX5/blob/main/README_zh-Hans.md)
 
 ## 环境
