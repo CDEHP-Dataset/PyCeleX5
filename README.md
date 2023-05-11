@@ -1,11 +1,12 @@
 # PyCeleX5
 
 CelePixel [CeleX5-MIPI](https://github.com/CelePixel/CeleX5-MIPI) C++ API Wrapper for Python 3
+[English] (https://github.com/CDEHP-Dataset/PyCeleX5/blob/main/README.md) [简体中文](https://github.com/CDEHP-Dataset/PyCeleX5/blob/main/README_zh-Hans.md)
 
-## 环境
+## Environment
 
-* 编译并安装好OpenCV 3.3
-* 确保`ldd lib/libCeleX.so`中的所有库可以正确找到
+* Compile or install precompiled `OpenCV 3.3.0`
+* Install all dependencies used by `libCeleX.so`, use `ldd lib/libCeleX.so` or [Dependencies](https://github.com/lucasg/Dependencies) in Windows
 
 ## 编译
 
@@ -21,9 +22,9 @@ make
 
 ### Windows
 
-* 预先安装好`Visual Studio`且包含“使用C++的桌面开发”
-* [CMake](https://cmake.org/download/)
-* [OpenCV 3.3.0](https://sourceforge.net/projects/opencvlibrary/files/opencv-win/3.3.0/opencv-3.3.0-vc14.exe)
+* Install `Visual Studio` with `Desktop development with C++`
+* Install [CMake](https://cmake.org/download/)
+* Install [OpenCV 3.3.0](https://sourceforge.net/projects/opencvlibrary/files/opencv-win/3.3.0/opencv-3.3.0-vc14.exe)
 
 ```bash
 git clone git@github.com:kuretru/PyCeleX5.git --recurse-submodules
@@ -36,29 +37,29 @@ cmake-gui.exe ..
 # Use Visual Studio build
 ```
 
-使用时，需要确保有以下文件，并处于相同目录中：
+Make sure the following files exist in the same directory:
 
-* `PyCeleX5.cp310-win_amd64.pyd`：上一步编译出来的，位于`PyCeleX5\build\Release`
-* `CeleX.dll`：来自[官方SDK](https://github.com/CelePixel/CeleX5-MIPI/tree/master/API/lib/Windows/x64/release)，位于`API\lib\Windows\x64\release`
-* `opencv_world330.dll`：来自[OpenCV](https://github.com/opencv/opencv/releases/tag/3.3.0)，位于`opencv\build\x64\vc14\bin`
-* `libusb-1.0.dll`：来自[libusb](https://github.com/libusb/libusb)，位于`VS2015-x64\dll\libusb-1.0.dll`
+* `PyCeleX5.cp310-win_amd64.pyd`: Compiled in the previous step, located in `PyCeleX5\build\Release`
+* `CeleX.dll`: from CelePixel [official SDK](https://github.com/CelePixel/CeleX5-MIPI/tree/master/API/lib/Windows/x64/release)，located in `API\lib\Windows\x64\release`
+* `opencv_world330.dll`：from [OpenCV](https://github.com/opencv/opencv/releases/tag/3.3.0)，located in `opencv\build\x64\vc14\bin`
+* `libusb-1.0.dll`：from [libusb](https://github.com/libusb/libusb)，located in `VS2015-x64\dll\libusb-1.0.dll`
 
-如果仍旧存在`ImportError: DLL load failed while importing PyCeleX5: 找不到指定的模块。`问题，请自行使用[Dependencies](https://github.com/lucasg/Dependencies)软件查找缺少的依赖。
+If there is still problem like `ImportError: DLL load failed while importing PyCeleX5: 找不到指定的模块。`, please use [Dependencies](https://github.com/lucasg/Dependencies) to find missing dependencies.
 
-## 测试
+## Test
 
 ```bash
-sudo python3 main.py
+sudo python3 demo.py
 ```
 
-## 文档
+## Added interfaces other than the official API
 
-| 方法                                                |         功能         |                     说明                     |
-| :-------------------------------------------------- | :------------------: | :------------------------------------------: |
-| `void setRotateType(int type)`                      |   设置图像翻转类型   | 若type&1==1则上下翻转，若type&2==2则左右翻转 |
-| `int getRotateType()`                               | 获取当前图像翻转类型 |                                              |
-| `void startRippingBinFile()`                        |   开始翻录Bin文件    |                                              |
-| `void stopRippingBinFile()`                         |   结束翻录Bin文件    |                                              |
-| `void enableImageFileOutput(string &directoryPath)` | 启用翻录图片文件功能 |         应传入一个用于存放图片的目录         |
-| `void enableEventDataOutput(string &filePath)`      | 启用翻录事件csv功能  |       应传入一个用于保存事件数据的文件       |
-| `bool rippingBinFileFinished()`                     |   判断翻录是否完成   |                                              |
+| 方法                                                |                   功能                    |                                 说明                                  |
+| :-------------------------------------------------- | :---------------------------------------: | :-------------------------------------------------------------------: |
+| `void setRotateType(int type)`                      |              Set rotate type              | `type&1==1` --> Flip up and down, `type&2==2` --> Flip left and right |
+| `int getRotateType()`                               |              Get rotate type              |                                                                       |
+| `void startRippingBinFile()`                        |          Start ripping bin file           |                                                                       |
+| `void stopRippingBinFile()`                         |           Stop ripping bin file           |                                                                       |
+| `void enableImageFileOutput(string &directoryPath)` |       Generate image during ripping       |               directoryPath: Directory for saving image               |
+| `void enableEventDataOutput(string &filePath)`      |     Generate csv file during ripping      |                  filePath:  Filename for saving data                  |
+| `bool rippingBinFileFinished()`                     | Determine whether the ripping is complete |                                                                       |
