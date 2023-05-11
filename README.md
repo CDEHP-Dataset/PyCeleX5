@@ -1,5 +1,7 @@
 # PyCeleX5
 
+CelePixel [CeleX5-MIPI](https://github.com/CelePixel/CeleX5-MIPI) C++ API Wrapper for Python 3
+
 ## 环境
 
 * 编译并安装好OpenCV 3.3
@@ -37,8 +39,8 @@ cmake-gui.exe ..
 使用时，需要确保有以下文件，并处于相同目录中：
 
 * `PyCeleX5.cp310-win_amd64.pyd`：上一步编译出来的，位于`PyCeleX5\build\Release`
-* `CeleX.dll`：来自官方SDK，位于`API\lib\Windows\x64\release`
-* `opencv_world330.dll`：来自OpenCV，位于`opencv\build\x64\vc14\bin`
+* `CeleX.dll`：来自[官方SDK](https://github.com/CelePixel/CeleX5-MIPI/tree/master/API/lib/Windows/x64/release)，位于`API\lib\Windows\x64\release`
+* `opencv_world330.dll`：来自[OpenCV](https://github.com/opencv/opencv/releases/tag/3.3.0)，位于`opencv\build\x64\vc14\bin`
 * `libusb-1.0.dll`：来自[libusb](https://github.com/libusb/libusb)，位于`VS2015-x64\dll\libusb-1.0.dll`
 
 如果仍旧存在`ImportError: DLL load failed while importing PyCeleX5: 找不到指定的模块。`问题，请自行使用[Dependencies](https://github.com/lucasg/Dependencies)软件查找缺少的依赖。
