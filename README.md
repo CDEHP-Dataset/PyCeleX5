@@ -63,3 +63,7 @@ sudo python3 demo.py
 | `void enableImageFileOutput(string &directoryPath)` |       Generate image during ripping       |               directoryPath: Directory for saving image               |
 | `void enableEventDataOutput(string &filePath)`      |     Generate csv file during ripping      |                  filePath:  Filename for saving data                  |
 | `bool rippingBinFileFinished()`                     | Determine whether the ripping is complete |                                                                       |
+
+## Thank
+
+Thanks to Guanzhou for providing the v1.0 code

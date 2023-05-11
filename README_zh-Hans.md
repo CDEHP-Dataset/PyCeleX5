@@ -63,3 +63,7 @@ sudo python3 demo.py
 | `void enableImageFileOutput(string &directoryPath)` |    翻录时生成图片    |         应传入一个用于存放图片的目录         |
 | `void enableEventDataOutput(string &filePath)`      |  翻录时生成csv文件   |       应传入一个用于保存事件数据的文件       |
 | `bool rippingBinFileFinished()`                     |   判断翻录是否完成   |                                              |
+
+## 鸣谢
+
+感谢`冠州`提供的v1.0代码
