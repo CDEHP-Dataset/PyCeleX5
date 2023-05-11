@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from build import PyCeleX5
-import cv2
 import time
+
+import cv2
+
+from build import PyCeleX5
 
 BIN_FILE = "/home/event/Desktop/A0001_P0001_S00.bin"
 
 celex5 = PyCeleX5.PyCeleX5(debug=True)
 
 
-def showImg():
+def show_img():
     while True:
         rgb = celex5.getFullPicBuffer()
         cv2.imshow("rgb", rgb)
@@ -19,7 +21,7 @@ def showImg():
         cv2.waitKey(1)
 
 
-def readBinFile():
+def read_bin_file():
     # 必须先打开翻录模式
     celex5.startRippingBinFile()
     # 设置图片保存路径
@@ -65,6 +67,7 @@ def main():
     celex5.setRotateType(2)
 
 
-main()
-showImg()
-# readBinFile()
+if __name__ == "__main__":
+    main()
+    show_img()
+    # readBinFile()
